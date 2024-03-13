@@ -4,7 +4,7 @@
 @endsection
 
 @section('content')
-    @include('layouts.shared/page-title', ['page_title' => 'បញ្ចីបន្', 'sub_title' => 'Tables'])
+    @include('layouts.shared/page-title', ['page_title' => 'បញ្ចីបន្ទប់', 'sub_title' => 'Tables'])
 
     {{-- <div class="row">
     <div class="col-xl-6">
@@ -557,7 +557,8 @@
                                                 class="text-reset fs-16 px-1">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger delete-btn" style="border: none; background-color: transparent;" >
+                                                <button type="submit" id="button"  class="btn btn-danger delete-btn"
+                                                    style="border: 2px; background-color: crimson;">
                                                     <i class="ri-delete-bin-2-line"></i>
                                                 </button>
                                             </form>
@@ -567,7 +568,6 @@
                         </table>
                         {{ $room->links('/vendor/pagination/bootstrap-5') }}
                     </div> <!-- end table-responsive-->
-
                 </div> <!-- end card body-->
             </div> <!-- end card -->
         </div><!-- end col-->
