@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -43,8 +44,8 @@ class RoutingController extends Controller
 
         if ($first == "assets")
             return redirect('home');
-
-        return view($first, ['mode' => $mode, 'demo' => $demo]);
+        
+        // return view($first, ['mode' => $mode, 'demo' => $demo]);
     }
 
     /**
@@ -58,6 +59,8 @@ class RoutingController extends Controller
 
         if ($first == "assets")
             return redirect('home');
+
+          
 
 
         $room = DB::table('tblrooms')
@@ -75,17 +78,17 @@ class RoutingController extends Controller
             ->join('tblroomtypes', 'tblrooms.room_type_id', '=', 'tblroomtypes.room_type_id')
             ->where('room_active', '1')
             ->orderBy('room_id', 'asc')
-            ->paginate('5');
-            // ->get();
+            ->paginate(config('app.row'));
+        // ->get();
 
 
-            $roomtype = DB::table('tblroomtypes')
+        $roomtype = DB::table('tblroomtypes')
             ->select('room_type_id', 'room_type_name')
             ->get();
 
 
 
-        return view($first . '.' . $second, ['mode' => $mode, 'demo' => $demo],compact('room','roomtype'));
+        return view($first . '.' . $second, ['mode' => $mode, 'demo' => $demo], compact('room', 'roomtype'));
     }
 
     /**
@@ -99,8 +102,9 @@ class RoutingController extends Controller
         if ($first == "assets")
             return redirect('home');
 
-        dd($first, $second, $third);
+  
 
         return view($first . '.' . $second . '.' . $third, ['mode' => $mode, 'demo' => $demo]);
     }
+    
 }

@@ -4,7 +4,7 @@
 @endsection
 
 @section('content')
-    @include('layouts.shared/page-title', ['page_title' => 'Basic Tables', 'sub_title' => 'Tables'])
+    @include('layouts.shared/page-title', ['page_title' => 'បញ្ចីបន្', 'sub_title' => 'Tables'])
 
     {{-- <div class="row">
     <div class="col-xl-6">
@@ -511,14 +511,6 @@
                     </p>
                 </div>
 
-
-
-
-
-
-
-
-
                 <div class="card-body">
                     <div class="table-responsive-sm">
                         <table class="table table-bordered border-primary table-centered mb-0">
@@ -534,21 +526,46 @@
                                     <th class="text-center">Action</th>
                                 </tr>
                             </thead>
+                            <?php
+                            $page = @$_GET['page'];
+                            if (!$page) {
+                                $page = 1;
+                            }
+                            $i = config('app.row') * ($page - 1) + 1;
+                            ?>
                             @foreach ($room as $item)
                                 <tbody>
                                     <tr>
-                                        <td>{{ $item->room_id }}</td>
-                                        <td class="table-user" style="width: 100px"><img src="{{ $item->room_img }}" style="width: auto;height: 50px;"></td>
+                                        <td>{{ $i++ }}</td>
+                                        <td class="table-user" style="width: 100px"><img src="{{ $item->room_img }}"
+                                                style="width: auto;height: 50px;"></td>
                                         <td>{{ $item->room_name }}</td>
                                         <th>{{ $item->room_type_name }}</th>
                                         <td>{{ $item->room_price }}</td>
-                                        <td> @if ($item->room_status == 1)Available @elseif($item->room_status == 0) Unavailable @else @endif </td>
+                                        <td>
+                                            @if ($item->room_status == 1)
+                                                Available
+                                            @elseif($item->room_status == 0)
+                                                Unavailable
+                                            @else
+                                            @endif
+                                        </td>
                                         <td style="width: 400px">{{ $item->room_desc }}</td>
-                                        <td class="text-center"> <a href="{{ route('room.destroy', ['id' => $item->room_id]) }}" method="POST" id="deleteForm{{ $item->room_id }}" class="text-reset fs-16 px-1"> <i class="ri-delete-bin-2-line"></i></a></td>
+                                        <td class="text-center">
+                                            <form action="{{ route('tables.basic.delete', ['id' => $item->room_id]) }}"
+                                                method="POST" id="deleteForm{{ $item->room_id }}"
+                                                class="text-reset fs-16 px-1">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger delete-btn" style="border: none; background-color: transparent;" >
+                                                    <i class="ri-delete-bin-2-line"></i>
+                                                </button>
+                                            </form>
+                                        </td>
                                 </tbody>
                             @endforeach
                         </table>
-                        {{$room->links('/vendor/pagination/bootstrap-5')}}
+                        {{ $room->links('/vendor/pagination/bootstrap-5') }}
                     </div> <!-- end table-responsive-->
 
                 </div> <!-- end card body-->
@@ -556,318 +573,4 @@
         </div><!-- end col-->
     </div>
     <!-- end row-->
-
-    {{-- 
-<div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="header-title">Always responsive</h4>
-                <p class="text-muted mb-0">
-                    Across every breakpoint, use
-                    <code>.table-responsive</code> for horizontally scrolling tables. Use
-                    <code>.table-responsive{-sm|-md|-lg|-xl}</code> as needed to create responsive
-                    tables up to a particular breakpoint. From that breakpoint and up, the table
-                    will behave
-                    normally and not scroll horizontally.
-                </p>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table mb-0">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Heading</th>
-                                <th scope="col">Heading</th>
-                                <th scope="col">Heading</th>
-                                <th scope="col">Heading</th>
-                                <th scope="col">Heading</th>
-                                <th scope="col">Heading</th>
-                                <th scope="col">Heading</th>
-                                <th scope="col">Heading</th>
-                                <th scope="col">Heading</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                                <td>Cell</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div> <!-- end table-responsive-->
-
-            </div> <!-- end card body-->
-        </div> <!-- end card -->
-    </div><!-- end col-->
-</div>
-<!-- end row-->
-
-
-<div class="row">
-    <div class="col-xl-6">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="header-title">Basic Borderless Example</h4>
-                <p class="text-muted mb-0">
-                    Add <code>.table-borderless</code> for a table without borders.
-                </p>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive-sm">
-                    <table class="table table-centered table-borderless mb-0">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Phone Number</th>
-                                <th>Date of Birth</th>
-                                <th>Country</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Risa D. Pearson</td>
-                                <td>336-508-2157</td>
-                                <td>July 24, 1950</td>
-                                <td>India</td>
-                            </tr>
-                            <tr>
-                                <td>Ann C. Thompson</td>
-                                <td>646-473-2057</td>
-                                <td>January 25, 1959</td>
-                                <td>USA</td>
-                            </tr>
-                            <tr>
-                                <td>Paul J. Friend</td>
-                                <td>281-308-0793</td>
-                                <td>September 1, 1939</td>
-                                <td>Canada</td>
-                            </tr>
-                            <tr>
-                                <td>Linda G. Smith</td>
-                                <td>606-253-1207</td>
-                                <td>May 3, 1962</td>
-                                <td>Brazil</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div> <!-- end table-responsive-->
-
-            </div> <!-- end card body-->
-        </div> <!-- end card -->
-    </div><!-- end col-->
-
-    <div class="col-xl-6">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="header-title">Inverse Borderless table</h4>
-                <p class="text-muted mb-0">
-                    Add <code>.table-borderless</code> for a table without borders.
-                </p>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive-sm">
-                    <table class="table table-dark table-borderless mb-0">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Phone Number</th>
-                                <th>Date of Birth</th>
-                                <th>Country</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Risa D. Pearson</td>
-                                <td>336-508-2157</td>
-                                <td>July 24, 1950</td>
-                                <td>Malaysia</td>
-                            </tr>
-                            <tr>
-                                <td>Ann C. Thompson</td>
-                                <td>646-473-2057</td>
-                                <td>January 25, 1959</td>
-                                <td>Belgium</td>
-                            </tr>
-                            <tr>
-                                <td>Paul J. Friend</td>
-                                <td>281-308-0793</td>
-                                <td>September 1, 1939</td>
-                                <td>Australia</td>
-                            </tr>
-                            <tr>
-                                <td>Sean C. Nguyen</td>
-                                <td>269-714-6825</td>
-                                <td>February 5, 1994</td>
-                                <td>Algeria</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div> <!-- end table-responsive-->
-
-            </div> <!-- end card body-->
-        </div> <!-- end card -->
-    </div><!-- end col-->
-</div>
-<!-- end row-->
-
-<div class="row">
-    <div class="col-xl-6">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="header-title">Active tables</h4>
-                <p class="text-muted mb-0">
-                    Highlight a table row or cell by adding a <code>.table-active</code> class.
-                </p>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive-sm">
-                    <table class="table mb-0">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Phone Number</th>
-                                <th>Date of Birth</th>
-                                <th>Country</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="table-active">
-                                <td>Risa D. Pearson</td>
-                                <td>336-508-2157</td>
-                                <td>July 24, 1950</td>
-                                <td>Belgium</td>
-                            </tr>
-                            <tr>
-                                <td>Ann C. Thompson</td>
-                                <td>646-473-2057</td>
-                                <td>January 25, 1959</td>
-                                <td>Malaysia</td>
-                            </tr>
-                            <tr>
-                                <td>Paul J. Friend</td>
-                                <td>281-308-0793</td>
-                                <td>September 1, 1939</td>
-                                <td>Algeria</td>
-                            </tr>
-                            <tr>
-                                <td scope="row">Linda G. Smith</td>
-                                <td colspan="2" class="table-active">606-253-1207</td>
-                                <td>Australia</td>
-                            </tr>
-                            <tr>
-                                <td>Paul J. Friend</td>
-                                <td>281-308-0793</td>
-                                <td>September 1, 1939</td>
-                                <td>India</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div><!-- end table-responsive-->
-            </div><!-- end card body-->
-        </div><!-- end card -->
-    </div><!-- end col -->
-
-    <div class="col-xl-6">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="header-title">Nesting</h4>
-                <p class="text-muted mb-0">
-                    Border styles, active styles, and table variants are not inherited by nested
-                    tables.
-                </p>
-            </div>
-            <div class="card-body">
-
-                <div class="table-responsive-sm">
-                    <table class="table table-striped mb-0">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Phone Number</th>
-                                <th>Date of Birth</th>
-                                <th>Country</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Risa D. Pearson</td>
-                                <td>336-508-2157</td>
-                                <td>July 24, 1950</td>
-                                <td>India</td>
-                            </tr>
-                            <tr>
-                                <td colspan="4">
-                                    <table class="table table-sm mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Phone Number</th>
-                                                <th>Date of Birth</th>
-                                                <th>Country</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Risa D. Pearson</td>
-                                                <td>336-508-2157</td>
-                                                <td>July 24, 1950</td>
-                                                <td>Malaysia</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ann C. Thompson</td>
-                                                <td>646-473-2057</td>
-                                                <td>January 25, 1959</td>
-                                                <td>Canada</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Linda G. Smith</td>
-                                <td>606-253-1207</td>
-                                <td>September 2, 1939</td>
-                                <td>Belgium</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div><!-- end card body-->
-        </div><!-- end card -->
-    </div><!-- end col -->
-</div><!-- end row --> --}}
 @endsection

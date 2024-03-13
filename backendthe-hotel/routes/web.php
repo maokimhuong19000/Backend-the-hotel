@@ -26,5 +26,5 @@ Route::group(['prefix' => '/', 'middleware'=>'auth'], function () {
 });
 
 
-Route::post('/store',[RoomController::class, 'store'])->name('room.store');
-Route::delete('/room/{id}', [RoomController::class, 'destroy'])->name('room.destroy');
+Route::post('/store',[RoomController::class, 'store']);
+Route::delete('tables/basic/{id}', [RoomController::class, 'destroy'])->name('tables.basic.delete');

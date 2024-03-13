@@ -2,7 +2,7 @@
 <div class="leftside-menu">
 
     <!-- Brand Logo Light -->
-    <a href="{{ route('any', 'index') }}" class="logo logo-light">
+    <a href="{{ route('any', 'home') }}" class="logo logo-light">
         <span class="logo-lg">
             {{-- <img src="/images/logo.png" alt="logo"> --}}
         </span>
@@ -12,10 +12,10 @@
     </a>
 
     <!-- Brand Logo Dark -->
-    <a href="{{ route('any', 'index') }}" class="logo logo-dark">
+    <a href="{{ route('any', 'home') }}" class="logo logo-dark">
         <span class="logo-lg">
             {{-- <img src="/images/logo-dark.png" alt="dark logo"> --}}
-            <h1 style="font-size: 20px;padding-top: 20px;color:#66619e">THE MOULIN OASIS</h1>
+            <h1 style="font-size: 20px;padding-top: 24px;color:#66619e">THE MOULIN OASIS</h1>
         </span>
         <span class="logo-sm">
             {{-- <img src="/images/logo-sm.png" alt="small logo"> --}}
@@ -30,7 +30,7 @@
             <li class="side-nav-title">Main</li>
 
             <li class="side-nav-item">
-                <a href="{{ route('any', 'index') }}" class="side-nav-link">
+                <a href="{{ route('any', 'home') }}" class="side-nav-link">
                     <i class="ri-dashboard-3-line"></i>
                     <span class="badge bg-success float-end">9+</span>
                     <span> Dashboard </span>
@@ -41,13 +41,13 @@
                 <a data-bs-toggle="collapse" href="#sidebarPages" aria-expanded="false" aria-controls="sidebarPages"
                     class="side-nav-link">
                     <i class="ri-pages-line"></i>
-                    <span> Pages </span>
+                    <span> បញ្ចលពត័មាន </span>
                     <span class="menu-arrow"></span>
                 </a>
                 <div class="collapse" id="sidebarPages">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="{{ route('second', ['pages', 'starter']) }}">Starter Page</a>
+                            <a href="{{ route('second', ['pages', 'starter']) }}">បញ្ចលពត័មានបន្ទប់</a>
                         </li>
                         <li>
                             <a href="{{ route('second', ['pages', 'contact-list']) }}">Contact List</a>
