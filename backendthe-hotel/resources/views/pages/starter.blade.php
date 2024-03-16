@@ -12,12 +12,18 @@
                         Click upload image
                     </p>
                 </div>
+
+                @if (Session::has('error'))
+                    <div class="alert alert-warning" role="alert">
+                        Something was wrong
+                    </div>
+                @endif
                 <div class="card-body">
                     <form action="{{ url('/store') }}" method="post" class="dropzone" id="room_img" name="room_img"
                         data-plugin="dropzone" data-previews-container="#file-previews"
                         data-upload-preview-template="#uploadPreviewTemplate" enctype="multipart/form-data">
                         <div class="fallback">
-                            <input name="room_img" type="file" multiple />
+                            <input name="room_img" type="file" multiple  required/>
                         </div>
                         <div class="dz-message needsclick">
                             <i class="h1 text-muted ri-upload-cloud-2-line"></i>
@@ -26,7 +32,6 @@
                                 <strong>not</strong> actually uploaded.)</span>
                         </div>
                     </form>
-
                     <!-- Preview -->
                     <div class="dropzone-previews mt-3" id="file-previews"></div>
 
@@ -77,24 +82,23 @@
                                 <div class="mb-3 col-md-6">
                                     <label for="id" class="form-label">ID</label>
                                     <input type="text" class="form-control" id="room_id" name="room_id"
-                                        placeholder="id">
+                                        placeholder="id" required>
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="room_name" class="form-label">Name</label>
                                     <input type="text" class="form-control" id="room_name" name="room_name"
-                                        placeholder="name">
+                                        placeholder="name" required>
                                 </div>
                             </div>
                             <div class="row g-2">
                                 <div class="mb-3 col-md-6">
                                     <label for="room_price" class="form-label">Pricing</label>
                                     <input type="text" class="form-control" id="room_price" name="room_price"
-                                        placeholder="enter price">
+                                        placeholder="enter price" required>
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="inputState" class="form-label">Room Type</label>
-                                    <select id="room_type_id" name="room_type_id" class="form-select">
-                                        <option>---------------------------------</option>
+                                    <select id="room_type_id" name="room_type_id" class="form-select" required>
                                         @foreach ($roomtype as $item)
                                             <option value="{{ $item->room_type_id }}">{{ $item->room_type_name }}</option>
                                         @endforeach
@@ -106,9 +110,8 @@
 
                                 <div class="mb-3 ">
                                     <label for="inputState" class="form-label">Status</label>
-                                    <select id="room_status" name="room_status" class="form-select">
+                                    <select id="room_status" name="room_status" class="form-select" required>
                                         <option>
-                                        <option selected>---------------------------------</option>
                                         <option value="1">Aailable</option>
                                         <option value="0">Unavilable</option>
                                         </option>
@@ -120,7 +123,7 @@
                             <div class="mb-3">
                                 <label for="inputAddress2" class="form-label">Description</label>
                                 <input type="text" class="form-control" id="room_desc" name="room_desc"
-                                    placeholder="description">
+                                    placeholder="description" required>
                             </div>
                             <button id="submitButton" type="submit" class="btn btn-primary">Save</button>
                         </form>
@@ -130,19 +133,17 @@
             </div> <!-- end col -->
         </div>
     </form>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        // Function to be called after clicking the submit button
-        function showSuccessMessage() {
+        // Check if success message exists in the session and show the SweetAlert2 message
+        @if (Session::has('success'))
             Swal.fire({
                 title: "Create Successfully",
-                text: "You clicked the button!",
-                timer: 100000,
+                text: "{{ Session::get('success') }}",
+                timer: 10000,
                 icon: "success"
             });
-        }
-
-        // Add click event listener to the submit button
-        document.getElementById("submitButton").addEventListener("click", showSuccessMessage);
+        @endif
     </script>
 @endsection
 @section('script')

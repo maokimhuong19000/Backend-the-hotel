@@ -11,7 +11,7 @@
                     <!-- Invoice Logo-->
                     <div class="clearfix">
                         <div class="float-start mb-3">
-                            <img src="/images/logo-dark.png" alt="dark logo" height="22">
+                            <H1>The Moulin Oasis</H1>
                         </div>
                         <div class="float-end">
                             <h4 class="m-0 d-print-none">Invoice</h4>

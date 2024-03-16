@@ -9,14 +9,12 @@ use Illuminate\Support\Facades\DB;
 
 class RoutingController extends Controller
 {
-
     public function __construct()
     {
         // $this->
         // middleware('auth')->
         // except('index');
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -38,14 +36,11 @@ class RoutingController extends Controller
      */
     public function root(Request $request, $first)
     {
-
         $mode = $request->query('mode');
         $demo = $request->query('demo');
-
         if ($first == "assets")
             return redirect('home');
-        
-        // return view($first, ['mode' => $mode, 'demo' => $demo]);
+        return view($first, ['mode' => $mode, 'demo' => $demo]);
     }
 
     /**
@@ -53,16 +48,10 @@ class RoutingController extends Controller
      */
     public function secondLevel(Request $request, $first, $second)
     {
-
         $mode = $request->query('mode');
         $demo = $request->query('demo');
-
         if ($first == "assets")
             return redirect('home');
-
-          
-
-
         $room = DB::table('tblrooms')
             ->select(
                 'tblrooms.room_id',
@@ -75,22 +64,16 @@ class RoutingController extends Controller
                 'tblrooms.room_img',
                 'tblroomtypes.room_type_name'
             )
-            ->join('tblroomtypes', 'tblrooms.room_type_id', '=', 'tblroomtypes.room_type_id')
-            ->where('room_active', '1')
-            ->orderBy('room_id', 'asc')
-            ->paginate(config('app.row'));
+        ->join('tblroomtypes', 'tblrooms.room_type_id', '=', 'tblroomtypes.room_type_id')
+        ->where('room_active', '1')
+        ->orderBy('room_id', 'asc')
+        ->paginate(config('app.row'));
         // ->get();
-
-
         $roomtype = DB::table('tblroomtypes')
-            ->select('room_type_id', 'room_type_name')
-            ->get();
-
-
-
+        ->select('room_type_id', 'room_type_name')
+        ->get();
         return view($first . '.' . $second, ['mode' => $mode, 'demo' => $demo], compact('room', 'roomtype'));
     }
-
     /**
      * third level route
      */
@@ -98,13 +81,8 @@ class RoutingController extends Controller
     {
         $mode = $request->query('mode');
         $demo = $request->query('demo');
-
         if ($first == "assets")
             return redirect('home');
-
-  
-
         return view($first . '.' . $second . '.' . $third, ['mode' => $mode, 'demo' => $demo]);
-    }
-    
+    }   
 }

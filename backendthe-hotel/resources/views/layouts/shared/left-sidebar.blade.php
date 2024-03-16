@@ -32,7 +32,8 @@
             <li class="side-nav-item">
                 <a href="{{ route('any', 'home') }}" class="side-nav-link">
                     <i class="ri-dashboard-3-line"></i>
-                    <span class="badge bg-success float-end">9+</span>
+                    {{-- dashboard badge --}}
+                    <span class="badge bg-success float-end"></span>
                     <span> Dashboard </span>
                 </a>
             </li>
@@ -48,6 +49,9 @@
                     <ul class="side-nav-second-level">
                         <li>
                             <a href="{{ route('second', ['pages', 'starter']) }}">បញ្ចលពត័មានបន្ទប់</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('second', ['tables', 'basic']) }}">បញ្ចីបន្ទប់</a>
                         </li>
                         <li>
                             <a href="{{ route('second', ['pages', 'contact-list']) }}">Contact List</a>
@@ -82,7 +86,6 @@
                     </ul>
                 </div>
             </li>
-
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarPagesAuth" aria-expanded="false"
                     aria-controls="sidebarPagesAuth" class="side-nav-link">
@@ -115,7 +118,8 @@
                 <a data-bs-toggle="collapse" href="#sidebarLayouts" aria-expanded="false" aria-controls="sidebarLayouts"
                     class="side-nav-link">
                     <i class="ri-layout-line"></i>
-                    <span class="badge bg-warning float-end">New</span>
+                    {{-- new layout --}}
+                    <span class="badge bg-warning float-end"></span>
                     <span> Layouts </span>
                 </a>
                 <div class="collapse" id="sidebarLayouts">
@@ -349,14 +353,12 @@
                 <a data-bs-toggle="collapse" href="#sidebarTables" aria-expanded="false"
                     aria-controls="sidebarTables" class="side-nav-link">
                     <i class="ri-table-line"></i>
-                    <span> បញ្ជីបន្ទប់ </span>
+                    <span>Empty</span>
                     <span class="menu-arrow"></span>
                 </a>
                 <div class="collapse" id="sidebarTables">
                     <ul class="side-nav-second-level">
-                        <li>
-                            <a href="{{ route('second', ['tables', 'basic']) }}">Basic Tables</a>
-                        </li>
+
                         <li>
                             <a href="{{ route('second', ['tables', 'datatable']) }}">Data Tables</a>
                         </li>
