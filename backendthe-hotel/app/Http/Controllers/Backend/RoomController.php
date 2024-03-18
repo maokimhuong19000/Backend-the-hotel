@@ -20,9 +20,23 @@ class RoomController extends Controller
     public function store(Request $req)
     {
         try {
-            // Extracting data from the request
 
 
+
+            $req->validate([
+                'room_img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            ]);
+
+
+
+
+            // Handle file upload
+            if ($req->hasFile('room_img')) {
+                $image = $req->file('room_img');
+                $imageName = '/images/rooms/' . time() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('/images/rooms'), $imageName);
+            }
+            // Extract data from the request
             $data = [
                 'room_id' => $req->input('room_id'),
                 'room_name' => $req->input('room_name'),
@@ -30,24 +44,24 @@ class RoomController extends Controller
                 'room_desc' => $req->input('room_desc'),
                 'room_active' => $req->input('room_active', '1'),
                 'room_type_id' => $req->input('room_type_id'),
+                'room_img' => $imageName,
                 'created_date' => now(),
                 'updated_date' => now(),
                 'deleted_date' => now(),
             ];
 
-
-            $i = DB::table('tblrooms')->insert($data);
+            // Insert data into the database
+            $inserted = DB::table('tblrooms')->insert($data);
             // dd($data);
-
-            if ($i) {
+            if ($inserted) {
                 Session::flash('success', 'Room created successfully.');
-                // Redirect back to the same page
                 return redirect()->back();
             }
-        } catch (Exception $e) {
-            // Handling exceptions and echoing the error message
-            return back()->with('error', 'something went wrong');
+        } catch (\Exception $e) {
+            Session::flash('error', 'Something went wrong: ' . $e->getMessage());
+            return redirect()->back();
         }
+
     }
 
 

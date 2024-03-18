@@ -99,7 +99,7 @@
                     icon: 'success',
                     title: 'Record deleted successfully.',
                     showConfirmButton: false,
-                    timer: 2000
+                    timer: 10000
                 });
                 return true;
             } else {
