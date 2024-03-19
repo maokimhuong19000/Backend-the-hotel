@@ -1,329 +1,161 @@
 @extends('layouts.vertical', ['title' => 'Profile', 'mode' => $mode ?? '', 'demo' => $demo ?? ''])
 
 @section('content')
-    <!-- start page title -->
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="profile-bg-picture"
-                style="background-image:url('/images/bg-profile.jpg')">
-                <span class="picture-bg-overlay"></span>
-                <!-- overlay -->
-            </div>
-            <!-- meta -->
-            <div class="profile-user-box">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="profile-user-img"><img src="/images/users/avatar-1.jpg" alt=""
-                                class="avatar-lg rounded-circle"></div>
-                        <div class="">
-                            <h4 class="mt-4 fs-17 ellipsis">Michael A. Franklin</h4>
-                            <p class="font-13"> User Experience Specialist</p>
-                            <p class="text-muted mb-0"><small>California, United States</small></p>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="d-flex justify-content-end align-items-center gap-2">
-                            <button type="button" class="btn btn-soft-danger">
-                                <i class="ri-settings-2-line align-text-bottom me-1 fs-16 lh-1"></i>
-                                Edit Profile
-                            </button>
-                            <a class="btn btn-soft-info" href="#"> <i class="ri-check-double-fill fs-18 me-1 lh-1"></i> Following</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--/ meta -->
+    {{-- @if (Session::has('success'))
+        <div class="alert alert-success" role="alert">
+            {{ Session::get('success') }}
         </div>
-    </div>
-    <!-- end row -->
+    @endif --}}
+    @if (Session::has('error'))
+        <div class="alert alert-danger" role="alert">
+            {{ Session::get('error') }}
+        </div>
+    @endif
 
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="card p-0">
-                <div class="card-body p-0">
-                    <div class="profile-content">
-                        <ul class="nav nav-underline nav-justified gap-0">
-                            <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab"
-                                    data-bs-target="#aboutme" type="button" role="tab"
-                                    aria-controls="home" aria-selected="true" href="#aboutme">About</a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
-                                    data-bs-target="#user-activities" type="button" role="tab"
-                                    aria-controls="home" aria-selected="true"
-                                    href="#user-activities">Activities</a></li>
-                            <li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
-                                    data-bs-target="#edit-profile" type="button" role="tab"
-                                    aria-controls="home" aria-selected="true"
-                                    href="#edit-profile">Settings</a></li>
-                            <li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
-                                    data-bs-target="#projects" type="button" role="tab"
-                                    aria-controls="home" aria-selected="true"
-                                    href="#projects">Projects</a></li>
-                        </ul>
 
-                        <div class="tab-content m-0 p-4">
-                            <div class="tab-pane active" id="aboutme" role="tabpanel"
-                                aria-labelledby="home-tab" tabindex="0">
-                                <div class="profile-desk">
-                                    <h5 class="text-uppercase fs-17 text-dark">Johnathan Deo</h5>
-                                    <div class="designation mb-4">PRODUCT DESIGNER (UX / UI / Visual
-                                        Interaction)</div>
-                                    <p class="text-muted fs-16">
-                                        I have 10 years of experience designing for the web, and
-                                        specialize
-                                        in the areas of user interface design, interaction design,
-                                        visual
-                                        design and prototyping. I’ve worked with notable startups
-                                        including
-                                        Pearl Street Software.
-                                    </p>
+    <form action="{{ url('/store') }}" method="post" enctype="multipart/form-data">
+        @csrf
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="header-title">Create Room</h4>
+                        <p class="text-muted mb-0"></p>
+                    </div>
 
-                                    <h5 class="mt-4 fs-17 text-dark">Contact Information</h5>
-                                    <table class="table table-condensed mb-0 border-top">
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">Url</th>
-                                                <td>
-                                                    <a href="#" class="ng-binding">
-                                                        www.example.com
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Email</th>
-                                                <td>
-                                                    <a href="" class="ng-binding">
-                                                        jonathandeo@example.com
-                                                    </a>
-                                                </td>
-                                            </tr>
+                    <!-- Upload Image Section -->
 
-                                            <tr>
-                                                <th scope="row">Phone</th>
-                                                <td class="ng-binding">(123)-456-7890</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Skype</th>
-                                                <td>
-                                                    <a href="#" class="ng-binding">
-                                                        jonathandeo123
-                                                    </a>
-                                                </td>
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div> <!-- end profile-desk -->
-                            </div> <!-- about-me -->
-
-                            <!-- Activities -->
-                            <div id="user-activities" class="tab-pane">
-                                <div class="timeline-2">
-                                    <div class="time-item">
-                                        <div class="item-info ms-3 mb-3">
-                                            <div class="text-muted">5 minutes ago</div>
-                                            <p><strong><a href="#" class="text-info">John
-                                                        Doe</a></strong>Uploaded a photo</p>
-                                            <img src="/images/small/small-3.jpg" alt=""
-                                                height="40" width="60" class="rounded-1">
-                                            <img src="/images/small/small-4.jpg" alt=""
-                                                height="40" width="60" class="rounded-1">
+                    <div class="row g-2">
+                        <div class="mb-3 col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <form action="{{ url('/store') }}" method="post" id="room_img_form"
+                                        enctype="multipart/form-data">
+                                        <div class="fallback">
+                                            <input type="file" name="room_img" id="room_img"​​​>
                                         </div>
-                                    </div>
-
-                                    <div class="time-item">
-                                        <div class="item-info ms-3 mb-3">
-                                            <div class="text-muted">30 minutes ago</div>
-                                            <p><a href="" class="text-info">Lorem</a> commented your
-                                                post.
-                                            </p>
-                                            <p><em>"Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                    elit.
-                                                    Aliquam laoreet tellus ut tincidunt euismod. "</em>
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div class="time-item">
-                                        <div class="item-info ms-3 mb-3">
-                                            <div class="text-muted">59 minutes ago</div>
-                                            <p><a href="" class="text-info">Jessi</a> attended a meeting
-                                                with<a href="#" class="text-success">John Doe</a>.</p>
-                                            <p><em>"Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                    elit.
-                                                    Aliquam laoreet tellus ut tincidunt euismod. "</em>
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div class="time-item">
-                                        <div class="item-info ms-3 mb-3">
-                                            <div class="text-muted">5 minutes ago</div>
-                                            <p><strong><a href="#" class="text-info">John
-                                                        Doe</a></strong> Uploaded 2 new photos</p>
-                                            <img src="/images/small/small-2.jpg" alt=""
-                                                height="40" width="60" class="rounded-1">
-                                            <img src="/images/small/small-1.jpg" alt=""
-                                                height="40" width="60" class="rounded-1">
-                                        </div>
-                                    </div>
-
-                                    <div class="time-item">
-                                        <div class="item-info ms-3 mb-3">
-                                            <div class="text-muted">30 minutes ago</div>
-                                            <p><a href="" class="text-info">Lorem</a> commented your
-                                                post.
-                                            </p>
-                                            <p><em>"Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                    elit.
-                                                    Aliquam laoreet tellus ut tincidunt euismod. "</em>
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div class="time-item">
-                                        <div class="item-info ms-3 mb-3">
-                                            <div class="text-muted">59 minutes ago</div>
-                                            <p><a href="" class="text-info">Jessi</a> attended a meeting
-                                                with<a href="#" class="text-success">John Doe</a>.</p>
-                                            <p><em>"Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                    elit.
-                                                    Aliquam laoreet tellus ut tincidunt euismod. "</em>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- settings -->
-                            <div id="edit-profile" class="tab-pane">
-                                <div class="user-profile-content">
-                                    <form>
-                                        <div class="row row-cols-sm-2 row-cols-1">
-                                            <div class="mb-2">
-                                                <label class="form-label" for="FullName">Full
-                                                    Name</label>
-                                                <input type="text" value="John Doe" id="FullName"
-                                                    class="form-control">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label" for="Email">Email</label>
-                                                <input type="email" value="first.last@example.com"
-                                                    id="Email" class="form-control">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label" for="web-url">Website</label>
-                                                <input type="text" value="Enter website url"
-                                                    id="web-url" class="form-control">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label"
-                                                    for="Username">Username</label>
-                                                <input type="text" value="john" id="Username"
-                                                    class="form-control">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label"
-                                                    for="Password">Password</label>
-                                                <input type="password" placeholder="6 - 15 Characters"
-                                                    id="Password" class="form-control">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label"
-                                                    for="RePassword">Re-Password</label>
-                                                <input type="password" placeholder="6 - 15 Characters"
-                                                    id="RePassword" class="form-control">
-                                            </div>
-                                            <div class="col-sm-12 mb-3">
-                                                <label class="form-label" for="AboutMe">About Me</label>
-                                                <textarea style="height: 125px;" id="AboutMe"
-                                                    class="form-control">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</textarea>
-                                            </div>
-                                        </div>
-                                        <button class="btn btn-primary" type="submit"><i
-                                                class="ri-save-line me-1 fs-16 lh-1"></i> Save</button>
                                     </form>
-                                </div>
-                            </div>
-
-                            <!-- profile -->
-                            <div id="projects" class="tab-pane">
-                                <div class="row m-t-10">
-                                    <div class="col-md-12">
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered mb-0">
-                                                <thead>
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th>Project Name</th>
-                                                        <th>Start Date</th>
-                                                        <th>Due Date</th>
-                                                        <th>Status</th>
-                                                        <th>Assign</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>Velonic Admin</td>
-                                                        <td>01/01/2015</td>
-                                                        <td>07/05/2015</td>
-                                                        <td><span class="badge bg-info">Work
-                                                                in Progress</span></td>
-                                                        <td>Techzaa</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>Velonic Frontend</td>
-                                                        <td>01/01/2015</td>
-                                                        <td>07/05/2015</td>
-                                                        <td><span
-                                                                class="badge bg-success">Pending</span>
-                                                        </td>
-                                                        <td>Techzaa</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>Velonic Admin</td>
-                                                        <td>01/01/2015</td>
-                                                        <td>07/05/2015</td>
-                                                        <td><span class="badge bg-pink">Done</span>
-                                                        </td>
-                                                        <td>Techzaa</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>4</td>
-                                                        <td>Velonic Frontend</td>
-                                                        <td>01/01/2015</td>
-                                                        <td>07/05/2015</td>
-                                                        <td><span class="badge bg-purple">Work
-                                                                in Progress</span></td>
-                                                        <td>Techzaa</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>5</td>
-                                                        <td>Velonic Admin</td>
-                                                        <td>01/01/2015</td>
-                                                        <td>07/05/2015</td>
-                                                        <td><span class="badge bg-warning">Coming
-                                                                soon</span></td>
-                                                        <td>Techzaa</td>
-                                                    </tr>
-
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Image Preview</h5>
+                                        <img id="image_preview" src="#" alt="Image Preview" width="200px"
+                                            style="display: none;">
                                     </div>
+                                    <!-- end card-->
                                 </div>
+                                <!-- end card-body -->
+                            </div>
+                            <!-- end card-->
+                        </div>
+                        <!-- end col-->
+                    </div>
+                    <script>
+                        document.getElementById('room_img').addEventListener('change', function(event) {
+                            var file = event.target.files[0];
+                            var reader = new FileReader();
+                            reader.onload = function(event) {
+                                var img = document.getElementById('image_preview');
+                                img.src = event.target.result;
+                                img.style.display = 'block';
+                            };
+                            reader.readAsDataURL(file);
+                        });
+                    </script>
+
+                    <!-- End Upload Image Section -->
+
+                    <div class="card-body">
+                        <div class="row g-2">
+                            <div class="mb-3 col-md-6">
+                                <label for="id" class="form-label">ID</label>
+                                <input type="text" class="form-control" id="room_id" name="room_id" placeholder="id"
+                                    required>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="room_name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="room_name" name="room_name"
+                                    placeholder="name" required>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
+                        <div class="row g-2">
+                            <div class="mb-3 col-md-6">
+                                <label for="room_price" class="form-label">Pricing</label>
+                                <input type="text" class="form-control" id="room_price" name="room_price"
+                                    placeholder="enter price" required>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="inputState" class="form-label">Room Type</label>
+                                <select id="room_type_id" name="room_type_id" class="form-select" required>
+                                    @foreach ($roomtype as $item)
+                                        <option value="{{ $item->room_type_id }}">{{ $item->room_type_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row g-2">
+                            <div class="mb-3 ">
+                                <label for="inputState" class="form-label">Status</label>
+                                <select id="room_status" name="room_status" class="form-select" required>
+                                    <option value="1">Available</option>
+                                    <option value="0">Unavailable</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputAddress2" class="form-label">Description</label>
+                            <input type="text" class="form-control" id="room_desc" name="room_desc"
+                                placeholder="description" required>
+                        </div>
+                        <button id="submitButton" type="submit" class="btn btn-primary">Save</button>
+                    </div> <!-- end card-body -->
+                </div> <!-- end card-->
+            </div> <!-- end col -->
         </div>
-    </div>
-    <!-- end page title -->
+    </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // Check if success message exists in the session and show the SweetAlert2 message
+        @if (Session::has('success'))
+            Swal.fire({
+                title: "Create Successfully",
+                text: "{{ Session::get('success') }}",
+                timer: 10000,
+                icon: "success"
+            });
+        @endif
 
-</div>
-<!-- end row -->
+        @if (Session::has('error'))
+            Swal.fire({
+                title: "Create faidil error",
+                text: "{{ Session::get('success') }}",
+                timer: 10000,
+                icon: "error"
+            });
+        @endif
+
+
+        //image preview
+        $(document).ready(function() {
+            // Initialize Dropzone
+            Dropzone.autoDiscover = false;
+            var myDropzone = new Dropzone("#room_img", {
+                url: "{{ url('/store') }}",
+                paramName: "room_img",
+                maxFiles: 1,
+                maxFilesize: 2, // in MB
+                acceptedFiles: "image/*",
+                addRemoveLinks: true,
+                dictRemoveFile: "Remove",
+                previewsContainer: "#file-preview",
+                init: function() {
+                    this.on("addedfile", function(file) {
+                        if (this.files[1] != null) {
+                            this.removeFile(this.files[0]);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+    <!-- end row -->
 @endsection

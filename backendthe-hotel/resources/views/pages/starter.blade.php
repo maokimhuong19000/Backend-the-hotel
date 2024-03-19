@@ -3,8 +3,6 @@
 @section('content')
     @include('layouts.shared/page-title', ['sub_title' => 'Pages', 'page_title' => ''])
 
-
-
     {{-- @if (Session::has('success'))
         <div class="alert alert-success" role="alert">
             {{ Session::get('success') }}
@@ -39,17 +37,12 @@
                                             <input type="file" name="room_img" id="room_img"​​​>
                                         </div>
                                     </form>
-
-                                  
-                                        <div class="card-body">
-                                            <h5 class="card-title">Image Preview</h5>
-                                            <img id="image_preview" src="#" alt="Image Preview" width="200px"
-                                                style="display: none;">
-                                        </div>
-                                        <!-- end card-body -->
-                                    
+                                    <div class="card-body">
+                                        <h5 class="card-title">Image Preview</h5>
+                                        <img id="image_preview" src="#" alt="Image Preview" width="200px"
+                                            style="display: none;">
+                                    </div>
                                     <!-- end card-->
-
                                 </div>
                                 <!-- end card-body -->
                             </div>
@@ -57,25 +50,19 @@
                         </div>
                         <!-- end col-->
                     </div>
-
-
-
                     <script>
                         document.getElementById('room_img').addEventListener('change', function(event) {
                             var file = event.target.files[0];
                             var reader = new FileReader();
-
                             reader.onload = function(event) {
                                 var img = document.getElementById('image_preview');
                                 img.src = event.target.result;
                                 img.style.display = 'block';
                             };
-
                             reader.readAsDataURL(file);
                         });
                     </script>
-
-
+            
                     <!-- End Upload Image Section -->
 
                     <div class="card-body">
@@ -120,15 +107,12 @@
                             <input type="text" class="form-control" id="room_desc" name="room_desc"
                                 placeholder="description" required>
                         </div>
-
-
                         <button id="submitButton" type="submit" class="btn btn-primary">Save</button>
                     </div> <!-- end card-body -->
                 </div> <!-- end card-->
             </div> <!-- end col -->
         </div>
     </form>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>

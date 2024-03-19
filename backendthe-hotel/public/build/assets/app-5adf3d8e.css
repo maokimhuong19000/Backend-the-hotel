@@ -1,6 +1,20 @@
 @charset "UTF-8";
 @import"https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap";
 
+@font-face {
+    font-family: 'Siemreap';
+    src: url('../fonts/Siemreap.woff2') format('woff2'),
+        url('../fonts/Siemreap.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Apply the font to Khmer text */
+.khmer-text {
+    font-family: 'Siemreap', sans-serif;
+}
+
 :root {
     --tz-logo-lg-height: 18px;
     --tz-logo-sm-height: 22px;

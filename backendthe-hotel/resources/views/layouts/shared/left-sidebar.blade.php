@@ -42,35 +42,35 @@
                 <a data-bs-toggle="collapse" href="#sidebarPages" aria-expanded="false" aria-controls="sidebarPages"
                     class="side-nav-link">
                     <i class="ri-pages-line"></i>
-                    <span> បញ្ចលពត័មាន </span>
+                    <span class="khmer-text"> បញ្ចលពត័មាន </span>
                     <span class="menu-arrow"></span>
                 </a>
                 <div class="collapse" id="sidebarPages">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="{{ route('second', ['pages', 'starter']) }}">បញ្ចលពត័មានបន្ទប់</a>
+                            <a href="{{ route('second', ['pages', 'starter']) }}" class="khmer-text">បញ្ចលពត័មានបន្ទប់</a>
                         </li>
                         <li>
-                            <a href="{{ route('second', ['tables', 'basic']) }}">បញ្ចីបន្ទប់</a>
+                            <a href="{{ route('second', ['tables', 'basic']) }}" class="khmer-text">បញ្ចីបន្ទប់</a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href="{{ route('second', ['pages', 'contact-list']) }}">Contact List</a>
-                        </li>
-                        <li>
+                        </li> --}}
+                        {{-- <li>
                             <a href="{{ route('second', ['pages', 'profile']) }}">Profile</a>
-                        </li>
-                        <li>
+                        </li> --}}
+                        {{-- <li>
                             <a href="{{ route('second', ['pages', 'timeline']) }}">Timeline</a>
-                        </li>
-                        <li>
+                        </li> --}}
+                        {{-- <li>
                             <a href="{{ route('second', ['pages', 'invoice']) }}">Invoice</a>
-                        </li>
-                        <li>
+                        </li> --}}
+                        {{-- <li>
                             <a href="{{ route('second', ['pages', 'faq']) }}">FAQ</a>
                         </li>
                         <li>
                             <a href="{{ route('second', ['pages', 'pricing']) }}">Pricing</a>
-                        </li>
+                        </li> --}}
                         <li>
                             <a href="{{ route('second', ['pages', 'maintenance']) }}">Maintenance</a>
                         </li>
@@ -114,12 +114,12 @@
                 </div>
             </li>
 
-            <li class="side-nav-item">
+            {{-- <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarLayouts" aria-expanded="false" aria-controls="sidebarLayouts"
                     class="side-nav-link">
-                    <i class="ri-layout-line"></i>
+                    <i class="ri-layout-line"></i> --}}
                     {{-- new layout --}}
-                    <span class="badge bg-warning float-end"></span>
+                    {{-- <span class="badge bg-warning float-end"></span>
                     <span> Layouts </span>
                 </a>
                 <div class="collapse" id="sidebarLayouts">
@@ -149,9 +149,9 @@
                         </li>
                     </ul>
                 </div>
-            </li>
+            </li> --}}
 
-            <li class="side-nav-title">Components</li>
+            {{-- <li class="side-nav-title">Components</li>
 
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarBaseUI" aria-expanded="false" aria-controls="sidebarBaseUI"
@@ -455,7 +455,7 @@
                 </div>
             </li>
 
-        </ul>
+        </ul> --}}
         <!--- End Sidemenu -->
 
         <div class="clearfix"></div>

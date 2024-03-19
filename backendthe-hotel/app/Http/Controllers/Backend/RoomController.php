@@ -20,15 +20,12 @@ class RoomController extends Controller
     public function store(Request $req)
     {
         try {
-
-
-
             $req->validate([
                 'room_img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'room_id'=>'required',
+                'room_name' =>'required|string|max:255',
+                'room_price' =>'required|numeric|min:1',                     
             ]);
-
-
-
 
             // Handle file upload
             if ($req->hasFile('room_img')) {
