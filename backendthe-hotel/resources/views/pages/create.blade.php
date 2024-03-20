@@ -13,8 +13,6 @@
             {{ Session::get('error') }}
         </div>
     @endif
-
-
     <form action="{{ url('/store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="row">

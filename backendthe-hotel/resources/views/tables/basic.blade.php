@@ -38,7 +38,7 @@
                             @foreach ($room as $item)
                                 <tbody>
                                     <tr>
-                                        <td>{{ $i++ }}</td>
+                                        <td>{{ $item->room_id }}</td>
                                         <td class="table-user" style="width: 100px"><img src="{{ $item->room_img }}" style="width: auto;height: 50px;"></td>
                                         <td>{{ $item->room_name }}</td>
                                         <th>{{ $item->room_type_name }}</th>
@@ -54,7 +54,7 @@
                                         <td style="width: 400px">{{ $item->room_desc }}</td>
                                         {{-- edit button --}}
                                         <td class="text-center">
-                                            <button type="buttonedit" id="editButton{{ $item->room_id }}"
+                                            <a href="{{route('room.edit',['id'=>$item->room_id])}}" id="editButton{{ $item->room_id }}"
                                                 class="btn btn-danger delete-btn"
                                                 style="border: 2px; background-color: rgb(0, 172, 72);">
                                                 <i class="fa-regular fa-pen-to-square"></i>

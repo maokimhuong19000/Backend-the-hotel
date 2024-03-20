@@ -22,9 +22,9 @@ class RoomController extends Controller
         try {
             $req->validate([
                 'room_img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'room_id'=>'required',
-                'room_name' =>'required|string|max:255',
-                'room_price' =>'required|numeric|min:1',                     
+                'room_id' => 'required',
+                'room_name' => 'required|string|max:255',
+                'room_price' => 'required|numeric|min:1',
             ]);
 
             // Handle file upload
@@ -54,12 +54,23 @@ class RoomController extends Controller
                 Session::flash('success', 'Room created successfully.');
                 return redirect()->back();
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Session::flash('error', 'Something went wrong: ' . $e->getMessage());
             return redirect()->back();
         }
 
     }
+
+    // Edit Data controller
+    public function edit($id)
+    {
+        $room = DB::table('tblrooms')->get();
+        
+        $roomtype = DB::table('tblroomtypes')->get();
+        
+        return view('pages.edit', compact('room', 'roomtype'));
+    }
+
 
 
 
@@ -69,9 +80,6 @@ class RoomController extends Controller
         $idata = DB::table('tblrooms')
             ->where('room_id', $id)
             ->update(['room_active' => '0']);
-
-
-
         return redirect('tables/basic')->with('success', 'Room deactivated successfully');
     }
 

@@ -17,14 +17,23 @@ use App\Http\Controllers\RoutingController;
 
 require __DIR__ . '/auth.php';
 
-Route::group(['prefix' => '/', 'middleware'=>'auth'], function () {
+Route::group(['prefix' => '/', 'middleware' => 'auth'], function () {
     Route::get('', [RoutingController::class, 'index'])->name('root');
-    Route::get('/home', fn()=>view('index'))->name('home');
+    Route::get('/home', fn() => view('index'))->name('home');
     Route::get('{first}/{second}/{third}', [RoutingController::class, 'thirdLevel'])->name('third');
     Route::get('{first}/{second}', [RoutingController::class, 'secondLevel'])->name('second');
     Route::get('{any}', [RoutingController::class, 'root'])->name('any');
+
+    // Routing Process Data
+    Route::get('/pages/create', [RoomController::class, 'create'])->name('create');
+
+    Route::post('/store', [RoomController::class, 'store']);
+
+    Route::get('pages/edit/', [RoomController::class, 'edit'])->name('room.edit'); // Edit Data controller
+    
+    Route::post('pages/update', [RoomController::class, 'update'])->name('room.update');
+
+    Route::delete('tables/basic/{id}', [RoomController::class, 'destroy'])->name('tables.basic.delete');
 });
 
 
-Route::post('/store',[RoomController::class, 'store']);
-Route::delete('tables/basic/{id}', [RoomController::class, 'destroy'])->name('tables.basic.delete');

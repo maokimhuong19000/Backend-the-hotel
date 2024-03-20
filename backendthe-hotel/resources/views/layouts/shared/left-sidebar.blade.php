@@ -48,7 +48,7 @@
                 <div class="collapse" id="sidebarPages">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="{{ route('second', ['pages', 'starter']) }}" class="khmer-text">បញ្ចលពត័មានបន្ទប់</a>
+                            <a href="{{ route('second', ['pages', 'create']) }}" class="khmer-text">បញ្ចលពត័មានបន្ទប់</a>
                         </li>
                         <li>
                             <a href="{{ route('second', ['tables', 'basic']) }}" class="khmer-text">បញ្ចីបន្ទប់</a>
