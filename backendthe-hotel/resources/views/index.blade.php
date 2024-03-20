@@ -19,7 +19,6 @@
                 </div>
             </div>
         </div> <!-- end col-->
-
         <div class="col-xxl-3 col-sm-6">
             <div class="card widget-flat text-bg-purple">
                 <div class="card-body">

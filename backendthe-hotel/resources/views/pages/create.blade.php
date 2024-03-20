@@ -67,7 +67,7 @@
                         <div class="row g-2">
                             <div class="mb-3 col-md-6">
                                 <label for="id" class="form-label">ID</label>
-                                <input type="text" class="form-control" id="room_id" name="room_id" placeholder="id"
+                                <input type="text" class="form-control" id="room_id" name="room_id" placeholder="id" 
                                     required>
                             </div>
                             <div class="mb-3 col-md-6">

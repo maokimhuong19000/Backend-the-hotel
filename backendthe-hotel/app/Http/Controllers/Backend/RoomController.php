@@ -66,6 +66,7 @@ class RoomController extends Controller
     {
         $room = DB::table('tblrooms')->where('room_id', $id)->first();
         $roomtype = DB::table('tblroomtypes')->get();
+        dd($room);
         return view('pages.edit', compact('room', 'roomtype'));
     }
 

@@ -36,11 +36,11 @@ class RoutingController extends Controller
      */
     public function root(Request $request, $first)
     {
-        $mode = $request->query('mode');
-        $demo = $request->query('demo');
-        if ($first == "assets")
-            return redirect('home');
-        return view($first, ['mode' => $mode, 'demo' => $demo]);
+            $mode = $request->query('mode');
+            $demo = $request->query('demo');
+            if ($first == "assets")
+                return redirect('home');
+            return view($first, ['mode' => $mode, 'demo' => $demo]);
     }
 
     /**

@@ -13,6 +13,8 @@
             {{ Session::get('error') }}
         </div>
     @endif
+    
+  
 
 
     <form action="{{ route('room.update') }}" method="POST" enctype="multipart/form-data">
@@ -24,7 +26,7 @@
                         <h4 class="header-title">Create Room</h4>
                         <p class="text-muted mb-0"></p>
                     </div>
-                    {{-- <input type="text" name="room_id" id="room_id" value=""> --}}
+                    
                     <!-- Upload Image Section -->
                     <div class="row g-2">
                         <div class="mb-3 col-12">
@@ -32,6 +34,7 @@
                                 <div class="card-body">
                                     <form action="{{ url('room.update') }}" method="post" id="room_img"
                                         enctype="multipart/form-data">
+                                        @csrf
                                         <div class="fallback">
                                             <input type="file" name="room_img" id="room_img" value="">
                                         </div>
