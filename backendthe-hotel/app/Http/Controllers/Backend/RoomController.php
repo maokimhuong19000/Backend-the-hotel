@@ -54,7 +54,7 @@ class RoomController extends Controller
                 Session::flash('success', 'Room created successfully.');
                 return redirect()->back();
             }
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             Session::flash('error', 'Something went wrong: ' . $e->getMessage());
             return redirect()->back();
         }
@@ -64,10 +64,8 @@ class RoomController extends Controller
     // Edit Data controller
     public function edit($id)
     {
-        $room = DB::table('tblrooms')->get();
-        
+        $room = DB::table('tblrooms')->where('room_id', $id)->first();
         $roomtype = DB::table('tblroomtypes')->get();
-        
         return view('pages.edit', compact('room', 'roomtype'));
     }
 

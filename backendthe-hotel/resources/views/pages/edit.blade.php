@@ -13,7 +13,9 @@
             {{ Session::get('error') }}
         </div>
     @endif
-    <form action="{{ url('room.update') }}" method="post" enctype="multipart/form-data">
+
+
+    <form action="{{ route('room.update') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-12">
@@ -22,14 +24,13 @@
                         <h4 class="header-title">Create Room</h4>
                         <p class="text-muted mb-0"></p>
                     </div>
-                    {{-- <input type="text" name="room_id" id="room_id" value="{{$room->room_id}}"> --}}
+                    {{-- <input type="text" name="room_id" id="room_id" value=""> --}}
                     <!-- Upload Image Section -->
-
                     <div class="row g-2">
                         <div class="mb-3 col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <form action="{{ url('room.update')}}" method="post" id="room_img"
+                                    <form action="{{ url('room.update') }}" method="post" id="room_img"
                                         enctype="multipart/form-data">
                                         <div class="fallback">
                                             <input type="file" name="room_img" id="room_img" value="">
@@ -60,26 +61,25 @@
                             reader.readAsDataURL(file);
                         });
                     </script>
-                    @foreach ($room as $item)
-
-                    @endforeach
                     <!-- End Upload Image Section -->
-                    
+
                     <div class="card-body">
                         <div class="row g-2">
                             <div class="mb-3 col-md-6">
                                 <label for="id" class="form-label">ID</label>
-                                <input type="text" class="form-control" name="room_id" id="room_id" value="{{$item->room_id}}" placeholder="ID"  required>
+                                <input type="text" class="form-control" name="room_id" id="room_id" value=""
+                                    placeholder="ID" required>
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="room_name" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="room_name" name="room_name" value="{{$item->room_name}}" placeholder="name" required>
+                                <input type="text" class="form-control" id="room_name" name="room_name" value=""
+                                    placeholder="name" required>
                             </div>
                         </div>
                         <div class="row g-2">
                             <div class="mb-3 col-md-6">
                                 <label for="room_price" class="form-label">Pricing</label>
-                                <input type="text" class="form-control" id="room_price" name="room_price" value="{{$item->room_price}}"
+                                <input type="text" class="form-control" id="room_price" name="room_price" value=""
                                     placeholder="enter price" required>
                             </div>
                             <div class="mb-3 col-md-6">

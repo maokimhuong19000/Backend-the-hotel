@@ -38,7 +38,7 @@
                             @foreach ($room as $item)
                                 <tbody>
                                     <tr>
-                                        <td>{{ $item->room_id }}</td>
+                                        <td>{{ $i++ }}</td>
                                         <td class="table-user" style="width: 100px"><img src="{{ $item->room_img }}" style="width: auto;height: 50px;"></td>
                                         <td>{{ $item->room_name }}</td>
                                         <th>{{ $item->room_type_name }}</th>
