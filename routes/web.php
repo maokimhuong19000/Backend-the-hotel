@@ -43,4 +43,19 @@ Route::group(['prefix' => '/', 'middleware' => 'auth'], function () {
 
 
 
-
+Route::get('/master', [MasterController::class, 'master']);
+Route::get('/roomlist1', [MasterController::class, 'roomlist1']);
+Route::get('/roomlist2', [MasterController::class, 'roomlist2']);
+Route::get('/roomlist3', [MasterController::class, 'roomlist3']);
+Route::get('/roomdetailsbooking', [MasterController::class, 'roomdetailsbooking']);
+Route::get('/spa', [MasterController::class, 'spa']);
+Route::get('/roomdetails', [MasterController::class, 'roomdetails']);
+Route::get('/restaurant', [MasterController::class, 'restaurant']);
+Route::get('/package', [MasterController::class, 'package']);
+Route::get('/blog', [MasterController::class, 'blog']);
+Route::get('/video', [MasterController::class, 'video']);
+Route::get('/gallery', [MasterController::class, 'gallery']);
+Route::get('/contacts', [MasterController::class, 'contacts']);
+Route::get('/about', [MasterController::class, 'about']);
+Route::get('/sendTelegramMessage', [TelegramController::class, 'sendTelegramMessage']);
+Route::post('/sendinfo', [TelegramController::class, 'sendinfo'])->name('sendinfo');
