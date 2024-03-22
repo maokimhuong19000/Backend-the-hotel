@@ -27,16 +27,17 @@
         <!--- Sidemenu -->
         <ul class="side-nav">
 
-            <li class="side-nav-title">Main</li>
-
+            <li class="side-nav-title">ផ្ទាំងគ្រប់ក្រង</li>
+            <hr>
             <li class="side-nav-item">
                 <a href="{{ route('any', 'home') }}" class="side-nav-link">
                     <i class="ri-dashboard-3-line"></i>
                     {{-- dashboard badge --}}
                     <span class="badge bg-success float-end"></span>
-                    <span> Dashboard </span>
+                    <span> ពត័មានខាងមុខ </span>
                 </a>
             </li>
+            
 
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarPages" aria-expanded="false" aria-controls="sidebarPages"
@@ -90,7 +91,7 @@
                 <a data-bs-toggle="collapse" href="#sidebarPagesAuth" aria-expanded="false"
                     aria-controls="sidebarPagesAuth" class="side-nav-link">
                     <i class="ri-group-2-line"></i>
-                    <span> Authentication </span>
+                    <span> សុវត្តិភាព </span>
                     <span class="menu-arrow"></span>
                 </a>
                 <div class="collapse" id="sidebarPagesAuth">

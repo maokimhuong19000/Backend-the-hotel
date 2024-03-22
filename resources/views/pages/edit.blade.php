@@ -113,26 +113,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        // Check if success message exists in the session and show the SweetAlert2 message
-        @if (Session::has('success'))
-            Swal.fire({
-                title: "Update Successfully",
-                text: "{{ Session::get('success') }}",
-                timer: 10000,
-                icon: "success"
-            });
-        @endif
-
-        @if (Session::has('error'))
-            Swal.fire({
-                title: "Create faidil error",
-                text: "{{ Session::get('success') }}",
-                timer: 10000,
-                icon: "error"
-            });
-        @endif
-
-
         //image preview
         $(document).ready(function() {
             // Initialize Dropzone

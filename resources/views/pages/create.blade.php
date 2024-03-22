@@ -2,17 +2,6 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 @section('content')
     @include('layouts.shared/page-title', ['sub_title' => 'Pages', 'page_title' => ''])
-
-    {{-- @if (Session::has('success'))
-        <div class="alert alert-success" role="alert">
-            {{ Session::get('success') }}
-        </div>
-    @endif --}}
-    @if (Session::has('error'))
-        <div class="alert alert-danger" role="alert">
-            {{ Session::get('error') }}
-        </div>
-    @endif
     <form action="{{ url('/store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="row">
@@ -60,31 +49,33 @@
                             reader.readAsDataURL(file);
                         });
                     </script>
-            
+
                     <!-- End Upload Image Section -->
 
                     <div class="card-body">
                         <div class="row g-2">
                             <div class="mb-3 col-md-6">
                                 <label for="id" class="form-label">ID</label>
-                                <input type="text" class="form-control" id="room_id" name="room_id" placeholder="id" 
-                                    required>
+                                <input type="text" class="form-control" id="room_id" name="room_id" placeholder="id">
+                                @if ($errors->has('room_id'))
+                                    <span class="text-danger">{{$errors->first('room_id')}}</span>
+                                @endif
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="room_name" class="form-label">Name</label>
                                 <input type="text" class="form-control" id="room_name" name="room_name"
-                                    placeholder="name" required>
+                                    placeholder="name">
                             </div>
                         </div>
                         <div class="row g-2">
                             <div class="mb-3 col-md-6">
                                 <label for="room_price" class="form-label">Pricing</label>
                                 <input type="text" class="form-control" id="room_price" name="room_price"
-                                    placeholder="enter price" required>
+                                    placeholder="enter price">
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="inputState" class="form-label">Room Type</label>
-                                <select id="room_type_id" name="room_type_id" class="form-select" required>
+                                <select id="room_type_id" name="room_type_id" class="form-select">
                                     @foreach ($roomtype as $item)
                                         <option value="{{ $item->room_type_id }}">{{ $item->room_type_name }}</option>
                                     @endforeach
@@ -94,7 +85,7 @@
                         <div class="row g-2">
                             <div class="mb-3 ">
                                 <label for="inputState" class="form-label">Status</label>
-                                <select id="room_status" name="room_status" class="form-select" required>
+                                <select id="room_status" name="room_status" class="form-select">
                                     <option value="1">Available</option>
                                     <option value="0">Unavailable</option>
                                 </select>
@@ -103,7 +94,7 @@
                         <div class="mb-3">
                             <label for="inputAddress2" class="form-label">Description</label>
                             <input type="text" class="form-control" id="room_desc" name="room_desc"
-                                placeholder="description" required>
+                                placeholder="description">
                         </div>
                         <button id="submitButton" type="submit" class="btn btn-primary">Save</button>
                     </div> <!-- end card-body -->

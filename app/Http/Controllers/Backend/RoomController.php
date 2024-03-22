@@ -19,14 +19,13 @@ class RoomController extends Controller
     // Store Data Controller method
     public function store(Request $req)
     {
+        $req->validate([
+            // 'room_img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'room_id' => 'required',
+            'room_name' => 'required|string|max:255',
+            'room_price' => 'required|numeric|min:1',
+        ]);
         try {
-            $req->validate([
-                'room_img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'room_id' => 'required',
-                'room_name' => 'required|string|max:255',
-                'room_price' => 'required|numeric|min:1',
-            ]);
-
             // Handle file upload
 
             if ($req->hasFile('room_img')) {
@@ -154,12 +153,12 @@ class RoomController extends Controller
 
         // Update data in the database
         DB::table('tblrooms')->where('room_id', $req->input('room_id'))->update($data);
-
+        
         Session::flash('success', 'Room Updated successfully.');
-        return redirect('groupspage/tables/basic')->with('success');
+        return redirect('groupspage/tables/basic')->with('success_update', 'Room Updated successfully.');
 
     } catch (Exception $e) {
-        Session::flash('error', 'Something went wrong: ' . $e->getMessage());
+        Session::flash('error_update', 'Something went wrong: ' . $e->getMessage());
         return redirect()->back();
     }
 }
@@ -171,7 +170,8 @@ class RoomController extends Controller
         $idata = DB::table('tblrooms')
             ->where('room_id', $id)
             ->update(['room_active' => '0']);
-        return redirect('tables/basic')->with('success', 'Room deactivated successfully');
+        
+        return redirect('groupspage/tables/basic')->with('success_delete', 'Room deactivated successfully');
     }
 
 }

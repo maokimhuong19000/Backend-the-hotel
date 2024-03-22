@@ -39,7 +39,8 @@
                                 <tbody>
                                     <tr>
                                         <td>{{ $i++ }}</td>
-                                        <td class="table-user" style="width: 100px"><img src="{{ $item->room_img }}" style="width: auto;height: 50px;"></td>
+                                        <td class="table-user" style="width: 100px"><img src="{{ $item->room_img }}"
+                                                style="width: auto;height: 50px;"></td>
                                         <td>{{ $item->room_name }}</td>
                                         <th>{{ $item->room_type_name }}</th>
                                         <td>{{ $item->room_price }}</td>
@@ -54,11 +55,11 @@
                                         <td style="width: 400px">{{ $item->room_desc }}</td>
                                         {{-- edit button --}}
                                         <td class="text-center">
-                                            <a href="{{route('room.edit',['id'=>$item->room_id])}}" id="editButton{{ $item->room_id }}"
-                                                class="btn btn-danger delete-btn"
+                                            <a href="{{ route('room.edit', ['id' => $item->room_id]) }}"
+                                                id="editButton{{ $item->room_id }}" class="btn btn-danger delete-btn"
                                                 style="border: 2px; background-color: rgb(0, 172, 72);">
                                                 <i class="fa-regular fa-pen-to-square"></i>
-                                            </button>
+                                                </button>
                                         </td>
                                         {{-- view button --}}
                                         <td class="text-center">
@@ -91,10 +92,12 @@
             </div> <!-- end card -->
         </div><!-- end col-->
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         function confirmDelete() {
             if (confirm('Are you sure you want to delete this record?')) {
+             
                 Swal.fire({
                     icon: 'success',
                     title: 'Record deleted successfully.',
@@ -106,6 +109,26 @@
                 return false;
             }
         }
+    </script>
+    <script>
+        // Check if success message exists in the session and show the SweetAlert2 message
+        @if (Session::has('success_update'))
+            Swal.fire({
+                title: "Update Successfully",
+                text: "{{ Session::get('ssuccess') }}",
+                timer: 10000,
+                icon: "success"
+            });
+        @endif
+
+        @if (Session::has('error_update'))
+            Swal.fire({
+                title: "Create faidil error",
+                text: "{{ Session::get('success') }}",
+                timer: 10000,
+                icon: "error"
+            });
+        @endif
     </script>
     <!-- end row-->
 @endsection
