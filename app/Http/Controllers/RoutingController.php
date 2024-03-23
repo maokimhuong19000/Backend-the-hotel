@@ -23,7 +23,7 @@ class RoutingController extends Controller
     public function index(Request $request)
     {
         if (Auth::user()) {
-            return redirect('index');
+            return redirect('admin.index');
         } else {
             return redirect('login');
         }

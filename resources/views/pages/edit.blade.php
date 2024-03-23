@@ -8,13 +8,13 @@
             {{ Session::get('success') }}
         </div>
     @endif --}}
-    @if (Session::has('error'))
+    @if (Session::has('error_update'))
         <div class="alert alert-danger" role="alert">
-            {{ Session::get('error') }}
+            {{ Session::get('error_update') }}
         </div>
     @endif
-    
-    
+
+
     <form action="{{ route('room.update') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
@@ -24,7 +24,7 @@
                         <h4 class="header-title">Create Room</h4>
                         <p class="text-muted mb-0"></p>
                     </div>
-                    
+
                     <!-- Upload Image Section -->
                     <div class="row g-2">
                         <div class="mb-3 col-12">
@@ -39,7 +39,8 @@
                                     </form>
                                     <div class="card-body">
                                         <h5 class="card-title">Image Preview</h5>
-                                        <img id="image_preview" src="{{$room->room_img}}" alt="Image Preview" width="200px">
+                                        <img id="image_preview" src="{{ $room->room_img }}" alt="Image Preview"
+                                            width="200px">
                                     </div>
                                     <!-- end card-->
                                 </div>
@@ -62,31 +63,42 @@
                         });
                     </script>
                     <!-- End Upload Image Section -->
-                    
+
                     <div class="card-body">
                         <div class="row g-2">
                             <div class="mb-3 col-md-6">
                                 <label for="id" class="form-label">ID</label>
-                                <input type="text" class="form-control" name="room_id" id="room_id" value="{{$room->room_id}}"
-                                    placeholder="ID" required>
+                                <input type="text" class="form-control" name="room_id" id="room_id"
+                                    value="{{ $room->room_id }}" placeholder="ID">
+                                @if ($errors->has('room_id'))
+                                    <span class="text-danger">{{ $errors->first('room_id') }}</span>
+                                @endif
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="room_name" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="room_name" name="room_name" value="{{$room->room_name}}"
-                                    placeholder="name" required>
+                                <input type="text" class="form-control" id="room_name" name="room_name"
+                                    value="{{ $room->room_name }}" placeholder="name">
+                                @if ($errors->has('room_name'))
+                                    <span class="text-danger">{{ $errors->first('room_name') }}</span>
+                                @endif
                             </div>
                         </div>
                         <div class="row g-2">
                             <div class="mb-3 col-md-6">
                                 <label for="room_price" class="form-label">Pricing</label>
-                                <input type="text" class="form-control" id="room_price" name="room_price" value="{{$room->room_price}}"
-                                    placeholder="enter price" required>
+                                <input type="text" class="form-control" id="room_price" name="room_price"
+                                    value="{{ $room->room_price }}" placeholder="enter price">
+                                @if ($errors->has('room_price'))
+                                    <span class="text-danger">{{ $errors->first('room_price') }}</span>
+                                @endif
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="inputState" class="form-label">Room Type</label>
-                                <select id="room_type_id" name="room_type_id" class="form-select" required>
+                                <select id="room_type_id" name="room_type_id" class="form-select">
                                     @foreach ($roomtype as $item)
-                                        <option value="{{ $item->room_type_id }}"{{$room->room_type_id==$item->room_type_id ? 'selected':''}}>{{ $item->room_type_name }}</option>
+                                        <option
+                                            value="{{ $item->room_type_id }}"{{ $room->room_type_id == $item->room_type_id ? 'selected' : '' }}>
+                                            {{ $item->room_type_name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -94,15 +106,17 @@
                         <div class="row g-2">
                             <div class="mb-3 ">
                                 <label for="inputState" class="form-label">Status</label>
-                                <select id="room_status" name="room_status" class="form-select" required>
-                                    <option value="1" {{$room->room_status == '1'? 'selected':''}}>Available</option>
-                                    <option value="0" {{$room->room_status == '0'? 'selected':''}}>Unavailable</option>
+                                <select id="room_status" name="room_status" class="form-select">
+                                    <option value="1" {{ $room->room_status == '1' ? 'selected' : '' }}>Available
+                                    </option>
+                                    <option value="0" {{ $room->room_status == '0' ? 'selected' : '' }}>Unavailable
+                                    </option>
                                 </select>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="inputAddress2" class="form-label">Description</label>
-                            <textarea class="form-control" id="room_desc" name="room_desc" row="3">{{$room->room_desc}}</textarea>
+                            <textarea class="form-control" id="room_desc" name="room_desc" row="3">{{ $room->room_desc }}</textarea>
                         </div>
                         <button id="submitButton" type="submit" class="btn btn-primary">Save</button>
                     </div> <!-- end card-body -->
@@ -113,6 +127,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+        @if (Session::has('success_update'))
+            Swal.fire({
+                title: "Create Successfully",
+                text: "{{ Session::get('success') }}",
+                timer: 10000,
+                icon: "success"
+            });
+        @endif
+
+        @if (Session::has('error_update'))
+            Swal.fire({
+                title: "Create faidil error",
+                text: "{{ Session::get('error_update') }}",
+                timer: 10000,
+                icon: "error"
+            });
+        @endif
         //image preview
         $(document).ready(function() {
             // Initialize Dropzone

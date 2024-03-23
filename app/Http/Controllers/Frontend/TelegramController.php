@@ -34,7 +34,7 @@ class TelegramController extends Controller
             'chat_id' => env('TELEGRAM_CHAT_ID'),
             'text' => 
                 "Name: " . $req->input('username') . "\n" .
-                'gender:'.$req->input('gender') . "\n" .
+                'Gender:'.$req->input('gender') . "\n" .
                 "Number Phone: " . $req->input('pwd') . "\n" .
                 "Email: " . $req->input('email') . "\n" .
                 "Address: ". $req->input('address'). "\n".
@@ -42,11 +42,7 @@ class TelegramController extends Controller
                 "Guest: " . $req->input('guest') . "\n" .
                 "Description: ". $req->input('description'). "\n" .	
                 "Check-in Date: " . $req->input('checkin_datepicker') . "\n" .
-                "Check-out Date: " . $req->input('checkout_datepicker')
-                
-                
-
-                
+                "Check-out Date: " . $req->input('checkout_datepicker'),        
         ]);
 
         return view('frontend.info', $data);

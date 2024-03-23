@@ -20,8 +20,8 @@ use App\Http\Controllers\RoutingController;
 require __DIR__ . '/auth.php';
 
 Route::group(['prefix' => '/', 'middleware' => 'auth'], function () {
-    Route::get('/groupspage', [RoutingController::class, 'index'])->name('root');
-    Route::group(['prefix' => 'groupspage'], function () {
+    Route::get('/admin', [RoutingController::class, 'index'])->name('root');
+    Route::group(['prefix' => 'admin'], function () {
         Route::get('/home', fn() => view('index'))->name('home');
         Route::get('{first}/{second}/{third}', [RoutingController::class, 'thirdLevel'])->name('third');
         Route::get('{first}/{second}', [RoutingController::class, 'secondLevel'])->name('second');
@@ -34,28 +34,38 @@ Route::group(['prefix' => '/', 'middleware' => 'auth'], function () {
 
     Route::post('/store', [RoomController::class, 'store']);
 
-    Route::get('subpage/edit/', [RoomController::class, 'edit'])->name('room.edit'); // Edit Data controller
+    Route::get('pages/edit/', [RoomController::class, 'edit'])->name('room.edit'); // Edit Data controller
+
+    Route::get('subpage/view', [RoomController::class, 'view'])->name('room.view'); // View Data controller
 
     Route::post('pages/update', [RoomController::class, 'update'])->name('room.update');
 
     Route::delete('tables/basic/{id}', [RoomController::class, 'destroy'])->name('tables.basic.delete');
-});
 
 
+   
 
-Route::get('/master', [MasterController::class, 'master']);
-Route::get('/roomlist1', [MasterController::class, 'roomlist1']);
-Route::get('/roomlist2', [MasterController::class, 'roomlist2']);
-Route::get('/roomlist3', [MasterController::class, 'roomlist3']);
-Route::get('/roomdetailsbooking', [MasterController::class, 'roomdetailsbooking']);
-Route::get('/spa', [MasterController::class, 'spa']);
-Route::get('/roomdetails', [MasterController::class, 'roomdetails']);
-Route::get('/restaurant', [MasterController::class, 'restaurant']);
-Route::get('/package', [MasterController::class, 'package']);
-Route::get('/blog', [MasterController::class, 'blog']);
-Route::get('/video', [MasterController::class, 'video']);
-Route::get('/gallery', [MasterController::class, 'gallery']);
-Route::get('/contacts', [MasterController::class, 'contacts']);
-Route::get('/about', [MasterController::class, 'about']);
-Route::get('/sendTelegramMessage', [TelegramController::class, 'sendTelegramMessage']);
-Route::post('/sendinfo', [TelegramController::class, 'sendinfo'])->name('sendinfo');
+
+}); 
+// Route Frontend 
+    Route::controller(MasterController::class)->group(function(){
+        Route::get('/master','master');
+        Route::get('/roomlist1','roomlist1');
+        Route::get('/roomlist2','roomlist2');
+        Route::get('/roomlist3','roomlist3');
+        Route::get('/roomdetailsbooking','roomdetailsbooking');
+        Route::get('/spa','spa');
+        Route::get('/roomdetails','roomdetails');
+        Route::get('/restaurant','restaurant');
+        Route::get('/package','package');
+        Route::get('/blog','blog');
+        Route::get('/video','video');
+        Route::get('/gallery','gallery');
+        Route::get('/contacts','contacts');
+        Route::get('/about','about');     
+    });
+
+    Route::controller(TelegramController::class)->group(function(){
+        Route::get('/sendTelegramMessage','sendTelegramMessage');   
+        Route::post('/sendinfo','sendinfo')->name('sendinfo');
+    });

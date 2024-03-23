@@ -37,7 +37,7 @@
                     <span> ពត័មានខាងមុខ </span>
                 </a>
             </li>
-            
+
 
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarPages" aria-expanded="false" aria-controls="sidebarPages"
@@ -49,29 +49,30 @@
                 <div class="collapse" id="sidebarPages">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="{{ route('second', ['pages', 'create']) }}" class="khmer-text">បញ្ចលពត័មានបន្ទប់</a>
+                            <a href="{{ route('second', ['pages', 'create']) }}"
+                                class="khmer-text">បញ្ចលពត័មានបន្ទប់</a>
                         </li>
                         <li>
                             <a href="{{ route('second', ['tables', 'basic']) }}" class="khmer-text">បញ្ចីបន្ទប់</a>
                         </li>
                         <li>
                             <a href="{{ route('second', ['pages', 'contact-list']) }}">Contact List</a>
-                        </li> 
+                        </li>
                         {{-- <li>
                             <a href="{{ route('second', ['pages', 'profile']) }}">Profile</a>
                         </li> --}}
-                        {{-- <li>
+                        <li>
                             <a href="{{ route('second', ['pages', 'timeline']) }}">Timeline</a>
-                        </li> --}}
-                        {{-- <li>
+                        </li>
+                        <li>
                             <a href="{{ route('second', ['pages', 'invoice']) }}">Invoice</a>
-                        </li> --}}
-                        {{-- <li>
+                        </li>
+                        <li>
                             <a href="{{ route('second', ['pages', 'faq']) }}">FAQ</a>
                         </li>
                         <li>
                             <a href="{{ route('second', ['pages', 'pricing']) }}">Pricing</a>
-                        </li> --}}
+                        </li>
                         <li>
                             <a href="{{ route('second', ['pages', 'maintenance']) }}">Maintenance</a>
                         </li>
@@ -118,7 +119,7 @@
             {{-- <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarLayouts" aria-expanded="false" aria-controls="sidebarLayouts"
                     class="side-nav-link">
-                    <i class="ri-layout-line"></i> --}}
+                    <i class="ri-layout-line"></i>
                     {{-- new layout --}}
                     {{-- <span class="badge bg-warning float-end"></span>
                     <span> Layouts </span>
@@ -457,9 +458,9 @@
             </li>
 
         </ul> --}}
-        <!--- End Sidemenu -->
+            <!--- End Sidemenu -->
 
-        <div class="clearfix"></div>
+            <div class="clearfix"></div>
     </div>
 </div>
 <!-- ========== Left Sidebar End ========== -->

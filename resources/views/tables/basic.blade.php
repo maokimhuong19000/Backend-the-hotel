@@ -63,11 +63,10 @@
                                         </td>
                                         {{-- view button --}}
                                         <td class="text-center">
-                                            <button type="submitview" id="viewButton{{ $item->room_id }}"
-                                                class="btn btn-danger delete-btn"
+                                            <a href="{{ route('room.view', ['id' => $item->room_id])}}"  class="btn btn-danger delete-btn"
                                                 style="border: 2px; background-color: rgb(0, 120, 218);">
                                                 <i class="fa-regular fa-eye"></i>
-                                            </button>
+                                                </button>
                                         </td>
                                         {{-- delete button  --}}
                                         <td class="text-center">
@@ -97,7 +96,6 @@
     <script>
         function confirmDelete() {
             if (confirm('Are you sure you want to delete this record?')) {
-             
                 Swal.fire({
                     icon: 'success',
                     title: 'Record deleted successfully.',

@@ -2,6 +2,11 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 @section('content')
     @include('layouts.shared/page-title', ['sub_title' => 'Pages', 'page_title' => ''])
+    @if (Session::has('error'))
+        <div class="alert alert-danger" role="alert">
+            {{ Session::get('error') }}
+        </div>
+    @endif
     <form action="{{ url('/store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="row">
@@ -58,13 +63,16 @@
                                 <label for="id" class="form-label">ID</label>
                                 <input type="text" class="form-control" id="room_id" name="room_id" placeholder="id">
                                 @if ($errors->has('room_id'))
-                                    <span class="text-danger">{{$errors->first('room_id')}}</span>
+                                    <span class="text-danger">{{ $errors->first('room_id') }}</span>
                                 @endif
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="room_name" class="form-label">Name</label>
                                 <input type="text" class="form-control" id="room_name" name="room_name"
                                     placeholder="name">
+                                @if ($errors->has('room_name'))
+                                    <span class="text-danger">{{ $errors->first('room_name') }}</span>
+                                @endif
                             </div>
                         </div>
                         <div class="row g-2">
@@ -72,6 +80,9 @@
                                 <label for="room_price" class="form-label">Pricing</label>
                                 <input type="text" class="form-control" id="room_price" name="room_price"
                                     placeholder="enter price">
+                                @if ($errors->has('room_price'))
+                                    <span class="text-danger">{{ $errors->first('room_price') }}</span>
+                                @endif
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="inputState" class="form-label">Room Type</label>

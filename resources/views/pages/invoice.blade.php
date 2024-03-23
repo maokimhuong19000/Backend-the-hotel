@@ -29,9 +29,9 @@
                         </div><!-- end col -->
                         <div class="col-sm-4 offset-sm-2">
                             <div class="mt-3 float-sm-end">
-                                <p class="fs-13"><strong>Order Date: </strong> &nbsp;&nbsp;&nbsp; Jan 17, 2023</p>
-                                <p class="fs-13"><strong>Order Status: </strong> <span class="badge bg-success float-end">Paid</span></p>
-                                <p class="fs-13"><strong>Order ID: </strong> <span class="float-end">#123456</span></p>
+                                <p class="fs-13"><strong>Booking Date</strong> &nbsp;&nbsp;&nbsp; Jan 17, 2023</p>
+                                <p class="fs-13"><strong>Booking Status: </strong> <span class="badge bg-success float-end">Paid</span></p>
+                                <p class="fs-13"><strong>Booking ID: </strong> <span class="float-end">#123456</span></p>
                             </div>
                         </div><!-- end col -->
                     </div>
@@ -41,19 +41,19 @@
                         <div class="col-6">
                             <h6 class="fs-14">Billing Address</h6>
                             <address>
-                                Lynne K. Higby<br>
-                                795 Folsom Ave, Suite 600<br>
-                                San Francisco, CA 94107<br>
+                                Keo Chanda st <br>
+                                Chroy Changva<br>
+                                Phnom Peng, Cambodia<br>
                                 <abbr title="Phone">P:</abbr> (123) 456-7890
                             </address>
                         </div> <!-- end col-->
 
                         <div class="col-6">
-                            <h6 class="fs-14">Shipping Address</h6>
+                            <h6 class="fs-14">Accommodation Address</h6>
                             <address>
-                                Thomson<br>
-                                795 Folsom Ave, Suite 600<br>
-                                San Francisco, CA 94107<br>
+                                Keo Chanda st <br>
+                                Chroy Changva<br>
+                                Phnom Peng, Cambodia<br>
                                 <abbr title="Phone">P:</abbr> (123) 456-7890
                             </address>
                         </div> <!-- end col-->
@@ -66,8 +66,8 @@
                                 <table class="table table-sm table-centered table-hover table-borderless mb-0 mt-3">
                                     <thead class="border-top border-bottom bg-light-subtle border-light">
                                     <tr><th>#</th>
-                                        <th>Item</th>
-                                        <th>Quantity</th>
+                                        <th>Booking</th>
+                                        <th>Date</th>
                                         <th>Unit Cost</th>
                                         <th class="text-end">Total</th>
                                     </tr></thead>
@@ -75,15 +75,14 @@
                                     <tr>
                                         <td class="">1</td>
                                         <td>
-                                            <b>Laptop</b> <br/>
-                                            Brand Model VGN-TXN27N/B
-                                            11.1" Notebook PC
+                                            <b>Twin Room</b> <br/>
+                                        
                                         </td>
-                                        <td>1</td>
-                                        <td>$1799.00</td>
-                                        <td class="text-end">$1799.00</td>
+                                        <td>3 ngiht</td>
+                                        <td>$190.00</td>
+                                        <td class="text-end">570</td>
                                     </tr>
-                                    <tr>
+                                    {{-- <tr>
                                         <td>2</td>
                                         <td>
                                             <b>Warranty</b> <br/>
@@ -103,7 +102,7 @@
                                         <td class="">2</td>
                                         <td>$412.00</td>
                                         <td class="text-end">$824.00</td>
-                                    </tr>
+                                    </tr> --}}
 
                                     </tbody>
                                 </table>
@@ -127,9 +126,9 @@
                         </div> <!-- end col -->
                         <div class="col-sm-6">
                             <div class="float-end mt-3 mt-sm-0">
-                                <p><b>Sub-total:</b> <span class="float-end">$4120.00</span></p>
-                                <p><b>VAT (12.5):</b> <span class="float-end">$515.00</span></p>
-                                <h3>$4635.00 USD</h3>
+                                <p><b>Sub-total:</b> <span class="float-end">$570.00</span></p>
+                                <p><b>VAT (12.5):</b> <span class="float-end">$5.70</span></p>
+                                <h3>$575.70 USD</h3>
                             </div>
                             <div class="clearfix"></div>
                         </div> <!-- end col -->
