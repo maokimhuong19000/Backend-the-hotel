@@ -23,7 +23,7 @@ class RoutingController extends Controller
     public function index(Request $request)
     {
         if (Auth::user()) {
-            return redirect('admin.index');
+            return redirect('index');
         } else {
             return redirect('login');
         }
@@ -42,7 +42,6 @@ class RoutingController extends Controller
                 return redirect('home');
             return view($first, ['mode' => $mode, 'demo' => $demo]);
     }
-
     /**
      * second level route
      */

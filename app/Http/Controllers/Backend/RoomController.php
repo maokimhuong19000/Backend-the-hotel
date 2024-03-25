@@ -69,49 +69,6 @@ class RoomController extends Controller
         return view('pages.edit', compact('room', 'roomtype'));
     }
     
-    // public function update(Request $req)
-    // {
-    //     try {
-    //         $req->validate([
-    //             'room_img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-    //             'room_id' => 'required',
-    //             'room_name' => 'required|string|max:255',
-    //             'room_price' => 'required|numeric|min:1',
-    //         ]);
-
-
-    //         if ($req->hasFile('room_img')) {
-    //             $image = $req->file('room_img');
-    //             $imageName = '/images/rooms/' . time() . '.' . $image->getClientOriginalExtension();
-    //             $image->move(public_path('/images/rooms'), $imageName);
-    //         }
-
-    //         $data = [
-    //             'room_id' => $req->input('room_id'),
-    //             'room_name' => $req->input('room_name'),
-    //             'room_price' => $req->input('room_price'),
-    //             'room_desc' => $req->input('room_desc'),
-    //             'room_active' => $req->input('room_active', '1'),
-    //             'room_type_id' => $req->input('room_type_id'),
-    //             'room_img' => $imageName,
-    //             'created_date' => now(),
-    //             'updated_date' => now(),
-    //             'deleted_date' => now(),
-    //         ];
-
-    //         // Insert data into the database
-    //         // dd($data);
-    //         $inserted = DB::table('tblrooms')->update($data);
-
-    //         if ($inserted) {
-    //             Session::flash('success', 'Room Updated successfully.');
-    //             return redirect()->back();
-    //         }
-    //     } catch (Exception $e) {
-    //         Session::flash('error', 'Something went wrong: ' . $e->getMessage());
-    //         return redirect()->back();
-    //     }
-    // }
     public function update(Request $req) // Update data
     {
         try {

@@ -14,7 +14,6 @@
         </div>
     @endif
 
-
     <form action="{{ route('room.update') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
@@ -24,7 +23,6 @@
                         <h4 class="header-title">Create Room</h4>
                         <p class="text-muted mb-0"></p>
                     </div>
-
                     <!-- Upload Image Section -->
                     <div class="row g-2">
                         <div class="mb-3 col-12">

@@ -16,9 +16,7 @@
                         <h4 class="header-title">Create Room</h4>
                         <p class="text-muted mb-0"></p>
                     </div>
-
                     <!-- Upload Image Section -->
-
                     <div class="row g-2">
                         <div class="mb-3 col-12">
                             <div class="card">
@@ -54,9 +52,7 @@
                             reader.readAsDataURL(file);
                         });
                     </script>
-
                     <!-- End Upload Image Section -->
-
                     <div class="card-body">
                         <div class="row g-2">
                             <div class="mb-3 col-md-6">

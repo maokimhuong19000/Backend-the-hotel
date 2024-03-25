@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Backend\RoomController;
 use App\Http\Controllers\Frontend\TelegramController;
 use App\Http\Controllers\Frontend\MasterController;
@@ -29,24 +30,26 @@ Route::group(['prefix' => '/', 'middleware' => 'auth'], function () {
     });
 
 
+
+    Route::post('/signup', [RegisteredUserController::class, 'signup'])->name('signup');
     // Routing Process Data
-    Route::get('/pages/create', [RoomController::class, 'create'])->name('create');
+    Route::get('/pages/create', [RoomController::class, 'create'])->name('create'); //Create Data
 
-    Route::post('/store', [RoomController::class, 'store']);
+    Route::post('/store', [RoomController::class, 'store']);//Store Data
 
-    Route::get('pages/edit/', [RoomController::class, 'edit'])->name('room.edit'); // Edit Data controller
+    Route::get('subpage/view', [RoomController::class, 'view'])->name('room.view'); // View Data 
 
-    Route::get('subpage/view', [RoomController::class, 'view'])->name('room.view'); // View Data controller
+    Route::get('pages/edit/', [RoomController::class, 'edit'])->name('room.edit'); // Edit Data 
 
-    Route::post('pages/update', [RoomController::class, 'update'])->name('room.update');
+    Route::post('pages/update', [RoomController::class, 'update'])->name('room.update'); //Update Data
 
-    Route::delete('tables/basic/{id}', [RoomController::class, 'destroy'])->name('tables.basic.delete');
-
-
-   
-
-
+    Route::delete('tables/basic/{id}', [RoomController::class, 'destroy'])->name('tables.basic.delete'); //Delete Data
 }); 
+
+
+// Route::post('/signup', [RegisteredUserController::class, 'signup'])->name('signup');
+
+
 // Route Frontend 
     Route::controller(MasterController::class)->group(function(){
         Route::get('/master','master');
@@ -64,7 +67,6 @@ Route::group(['prefix' => '/', 'middleware' => 'auth'], function () {
         Route::get('/contacts','contacts');
         Route::get('/about','about');     
     });
-
     Route::controller(TelegramController::class)->group(function(){
         Route::get('/sendTelegramMessage','sendTelegramMessage');   
         Route::post('/sendinfo','sendinfo')->name('sendinfo');
