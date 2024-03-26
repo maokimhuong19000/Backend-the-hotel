@@ -51,7 +51,7 @@ class RoomController extends Controller
 
             if ($inserted) {
                 Session::flash('success', 'Room created successfully.');
-                return redirect('admin/pages/create')->with('success','Room created successfully');
+                return redirect('admins/pages/create')->with('success','Room created successfully');
             }
         } catch (Exception $e) {
             Session::flash('error', 'Something went wrong: ' . $e->getMessage());
@@ -107,7 +107,7 @@ class RoomController extends Controller
             DB::table('tblrooms')->where('room_id', $req->input('room_id'))->update($data);
 
             Session::flash('success_update', 'Room Updated successfully.');
-            return redirect('admin/tables/basic')->with('success_update', 'Room Updated successfully.');
+            return redirect('admins/tables/basic')->with('success_update', 'Room Updated successfully.');
 
         } catch (Exception $e) {
             Session::flash('error_update', 'Something went wrong: ' . $e->getMessage());
@@ -133,7 +133,7 @@ class RoomController extends Controller
             ->where('room_id', $id)
             ->update(['room_active' => '0']);
 
-        return redirect('admin/tables/basic')->with('success_delete', 'Room deactivated successfully');
+        return redirect('admins/tables/basic')->with('success_delete', 'Room deactivated successfully');
     }
 
 }

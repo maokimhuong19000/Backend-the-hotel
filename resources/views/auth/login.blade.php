@@ -20,12 +20,8 @@
                             <div class="col-lg-6">
                                 <div class="d-flex flex-column h-100">
                                     <div class="auth-brand p-4">
-                                        <a href="{{ route('any', 'index') }}" class="logo-light">
-                                            <img src="/images/logo.png" alt="logo" height="22">
-                                        </a>
-                                        <a href="{{ route('any', 'index') }}" class="logo-dark">
-                                            <img src="/images/logo-dark.png" alt="dark logo" height="22">
-                                        </a>
+                                       
+                                     
                                     </div>
                                     <div class="p-4 my-auto">
                                         <h4 class="fs-20">Sign In</h4>
@@ -34,7 +30,7 @@
                                         </p>
 
                                         <!-- form -->
-                                        <form method="POST" action="{{ route('login') }}">
+                                        <form method="POST" action="{{route('login')}}">
                                             @csrf
 
                                             @if (sizeof($errors) > 0)
@@ -46,7 +42,7 @@
                                             <div class="mb-3">
                                                 <label for="emailaddress" class="form-label">Email address</label>
                                                 <input class="form-control" type="email" name="email" id="emailaddress"
-                                                    placeholder="Enter your email" value="test@test.com">
+                                                    placeholdname('login');r="Enter your email" value="test@test.com">
                                             </div>
                                             <div class="mb-3">
                                                 <a href="auth-forgotpw.html" class="text-muted float-end"><small>Forgot
@@ -92,7 +88,7 @@
             </div>
             <div class="row">
                 <div class="col-12 text-center">
-                    <p class="text-dark-emphasis">Don't have an account? <a href="{{ route('second', [ 'auth' , 'register']) }}"
+                    <p class="text-dark-emphasis">Don't have an account? <a href=" "
                             class="text-dark fw-bold ms-1 link-offset-3 text-decoration-underline"><b>Sign up</b></a>
                     </p>
                 </div> <!-- end col -->

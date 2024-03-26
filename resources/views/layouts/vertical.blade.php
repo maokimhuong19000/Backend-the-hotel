@@ -11,10 +11,10 @@
     <!-- Begin page -->
     <div class="wrapper">
 
-        @include('layouts.shared/topbar')
-        @include('layouts.shared/left-sidebar')
+       @include('layouts.shared/topbar')
+        @include('layouts.shared/left-sidebar') 
 
-        <div class="content-page">
+        <div class="content-page">  
             <div class="content">
 
                 <!-- Start Content-->

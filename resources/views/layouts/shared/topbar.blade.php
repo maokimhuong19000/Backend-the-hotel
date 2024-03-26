@@ -6,7 +6,7 @@
             <!-- Topbar Brand Logo -->
             <div class="logo-topbar">
                 <!-- Logo light -->
-                <a href="{{route('any', 'index')}}" class="logo-light">
+                {{-- <a href="{{route('any', 'index')}}" class="logo-light"> --}}
                     <span class="logo-lg">
                         <img src="/images/logo.png" alt="logo">
                     </span>
@@ -16,7 +16,7 @@
                 </a>
 
                 <!-- Logo Dark -->
-                <a href="{{route('any', 'index')}}" class="logo-dark">
+                {{-- <a href="{{route('any', 'index')}}" class="logo-dark">--}}  
                     <span class="logo-lg">
                         <img src="/images/logo-dark.png" alt="dark logo">
                     </span>

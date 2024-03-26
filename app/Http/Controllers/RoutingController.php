@@ -36,6 +36,7 @@ class RoutingController extends Controller
      */
     public function root(Request $request, $first)
     {
+        dd(Auth::user()) ;
             $mode = $request->query('mode');
             $demo = $request->query('demo');
             if ($first == "assets")
@@ -47,6 +48,7 @@ class RoutingController extends Controller
      */
     public function secondLevel(Request $request, $first, $second)
     {
+      
         $mode = $request->query('mode');
         $demo = $request->query('demo');
         if ($first == "assets")

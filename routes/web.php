@@ -1,29 +1,21 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Authentication;
 use App\Http\Controllers\Backend\RoomController;
 use App\Http\Controllers\Frontend\TelegramController;
 use App\Http\Controllers\Frontend\MasterController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoutingController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
+ 
+// One Page Shoudl has on Controller 
 require __DIR__ . '/auth.php';
 
-Route::group(['prefix' => '/', 'middleware' => 'auth'], function () {
+Route::group(['middleware' => 'auth_custome'], function () {
     Route::get('/admin', [RoutingController::class, 'index'])->name('root');
-    Route::group(['prefix' => 'admin'], function () {
-        Route::get('/home', fn() => view('index'))->name('home');
+    Route::group(['prefix' => 'admins'], function () {
         Route::get('{first}/{second}/{third}', [RoutingController::class, 'thirdLevel'])->name('third');
         Route::get('{first}/{second}', [RoutingController::class, 'secondLevel'])->name('second');
         Route::get('{any}', [RoutingController::class, 'root'])->name('any');
@@ -47,7 +39,17 @@ Route::group(['prefix' => '/', 'middleware' => 'auth'], function () {
 }); 
 
 
-// Route::post('/signup', [RegisteredUserController::class, 'signup'])->name('signup');
+// Authentication For your application here
+    Route::get('',function(){
+        return view('auth.login'); });
+    Route::post('/login',[Authentication::class,'doLogin'])->name('login');    
+
+// Admin 
+
+Route::group(['prefix' => 'admin','middleware' => 'auth_custome'], function () {
+    Route::get('home', [AdminController::class, 'index']);    
+   
+});
 
 
 // Route Frontend 

@@ -30,7 +30,7 @@
             <li class="side-nav-title">ផ្ទាំងគ្រប់ក្រង</li>
             <hr>
             <li class="side-nav-item">
-                <a href="{{ route('any', 'home') }}" class="side-nav-link">
+                {{--<a href="{{ route('any', 'home') }}" class="side-nav-link">--}
                     <i class="ri-dashboard-3-line"></i>
                     {{-- dashboard badge --}}
                     <span class="badge bg-success float-end"></span>
