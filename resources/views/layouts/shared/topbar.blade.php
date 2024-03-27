@@ -7,22 +7,22 @@
             <div class="logo-topbar">
                 <!-- Logo light -->
                 {{-- <a href="{{route('any', 'index')}}" class="logo-light"> --}}
-                    <span class="logo-lg">
-                        <img src="/images/logo.png" alt="logo">
-                    </span>
-                    <span class="logo-sm">
-                        <img src="/images/logo-sm.png" alt="small logo">
-                    </span>
+                <span class="logo-lg">
+                    <img src="/images/logo.png" alt="logo">
+                </span>
+                <span class="logo-sm">
+                    <img src="/images/logo-sm.png" alt="small logo">
+                </span>
                 </a>
 
                 <!-- Logo Dark -->
-                {{-- <a href="{{route('any', 'index')}}" class="logo-dark">--}}  
-                    <span class="logo-lg">
-                        <img src="/images/logo-dark.png" alt="dark logo">
-                    </span>
-                    <span class="logo-sm">
-                        <img src="/images/logo-sm.png" alt="small logo">
-                    </span>
+                {{-- <a href="{{route('any', 'index')}}" class="logo-dark"> --}}
+                <span class="logo-lg">
+                    <img src="/images/logo-dark.png" alt="dark logo">
+                </span>
+                <span class="logo-sm">
+                    <img src="/images/logo-sm.png" alt="small logo">
+                </span>
                 </a>
             </div>
 
@@ -236,8 +236,8 @@
             </li>
 
             <li class="dropdown notification-list">
-                <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button"
-                    aria-haspopup="false" aria-expanded="false">
+                <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#"
+                    role="button" aria-haspopup="false" aria-expanded="false">
                     <i class="ri-notification-3-line fs-22"></i>
                     <span class="noti-icon-badge badge text-bg-pink">3</span>
                 </a>
@@ -339,14 +339,19 @@
             </li>
 
             <li class="dropdown">
-                <a class="nav-link dropdown-toggle arrow-none nav-user" data-bs-toggle="dropdown" href="#" role="button"
-                    aria-haspopup="false" aria-expanded="false">
+                <a class="nav-link dropdown-toggle arrow-none nav-user" data-bs-toggle="dropdown" href="#"
+                    role="button" aria-haspopup="false" aria-expanded="false">
                     <span class="account-user-avatar">
-                        <img src="/images/users/avatar-1.jpg" alt="user-image" width="32" class="rounded-circle">
+                        <img src="/images/users/avatar-1.jpg" alt="user-image" width="32"
+                            class="rounded-circle">
                     </span>
                     <span class="d-lg-block d-none">
-                        <h5 class="my-0 fw-normal">Thomson <i
-                                class="ri-arrow-down-s-line d-none d-sm-inline-block align-middle"></i></h5>
+                        <h5 class="my-0 fw-normal">
+                            {{-- @foreach ($users as $item)
+                                {{ $item->name }}
+                            @endforeach --}}
+                            <i class="ri-arrow-down-s-line d-none d-sm-inline-block align-middle"></i>
+                        </h5>
                     </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated profile-dropdown">
@@ -380,7 +385,7 @@
                     </a>
 
                     <!-- item-->
-                    <a href="{{url('/auth/logout')}}" class="dropdown-item">
+                    <a href="{{ route('second', ['auth', 'logout']) }}" class="dropdown-item">
                         <i class="ri-logout-box-line fs-18 align-middle me-1"></i>
                         <span>Logout</span>
                     </a>

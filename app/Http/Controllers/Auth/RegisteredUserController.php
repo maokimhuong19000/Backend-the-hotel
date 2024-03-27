@@ -53,29 +53,43 @@ class RegisteredUserController extends Controller
 
         return redirect(RouteServiceProvider::HOME);
     }
-
     public function signup(Request $user)
     {
-        try {// Validation
-            $user -> validate([
-                'name' => 'required|string|max:191',
-                'email' => 'required|email|unique:users,email',
-                'password' => 'required|min:6',
-            ]);
-            $user = [
-                'name' => $user->name,
-                'email' => $user->email,
-                'password' => Hash::make($user->password),
-            ];
-            // dd($user);
-            $insertUser = DB::table('users')->insert($user);
-            if ($insertUser) {
-                Session::flash('success_user', 'User created successfully.');
-                return redirect('admin/auth/register')->with('success_user', 'User created successfully');
-            }
-        } catch (Exception $e) {
-            Session::flash('error_user', 'Something went wrong: ' . $e->getMessage());
-            return redirect()->back();
+
+        $user->validate([
+            'name' => 'required|string|max:191',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6',
+        ]);
+        $user = [
+            'name' => $user->name,
+            'email' => $user->email,
+            'password' => Hash::make($user->password),
+        ];
+
+        $insertUser = DB::table('users')->insert($user);
+        // dd($user);
+        if ($insertUser) {
+            return redirect('/admins/auth/register')->with('success', 'Create user successfuly');
+        } else {
+            return redirect()->back()->with('error', 'Create user failed');
         }
     }
+
 }
+    
+
+
+
+// $user->validate([
+//     'name' => 'required|string|max:191',
+//     'email' => 'required|email|unique:users,email',
+//     'password' => 'required|min:6',
+// ]);
+
+// $users = $user->only('name', 'email', 'password');
+// if (Auth::attempt($users)) {
+//     return redirect('/admins/auth/register')->back()->with('sucess', 'Create user successfuly');
+// } else {
+//     return redirect()->back()->with('error', 'Create user failed');
+// }

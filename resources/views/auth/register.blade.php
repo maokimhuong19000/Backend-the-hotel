@@ -6,11 +6,7 @@
 
     @include('layouts.shared/head-css', ['mode' => $mode ?? '', 'demo' => $demo ?? ''])
 </head>
-@if (Session::has('error'))
-    <div class="alert alert-danger" role="alert">
-        {{ Session::get('error') }}
-    </div>
-@endif
+
 
 <body class="authentication-bg">
     <div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5 position-relative">
@@ -36,6 +32,18 @@
                                         <h4 class="fs-20">Free Sign Up</h4>
                                         <p class="text-muted mb-3">Enter your email address and password to access
                                             account.</p>
+                                        @if (@session('success'))
+                                            <div class="alert alert-success">
+                                                {{ session('sucsess') }}
+                                                <span class="text-success">Success Registeration</span>
+                                            </div>
+                                        @endif
+                                        @if (@session('error'))
+                                            <div class="alert alert-danger">
+                                                {{ session('error_user') }}
+                                                <span class="text-danger">Error Registeration</span>
+                                            </div>
+                                        @endif
 
                                         <!-- form -->
                                         <form action="{{ url('signup') }}" method="post" enctype="multipart/form-data">
@@ -43,17 +51,26 @@
                                             <div class="mb-3">
                                                 <label for="fullname" class="form-label">Full Name</label>
                                                 <input class="form-control" type="text" id="name" name="name"
-                                                    placeholder="Enter your name" required="">
+                                                    placeholder="Enter your name">
+                                                @if ($errors->has('name'))
+                                                    <span class="text-danger">{{ $errors->first('name') }}</span>
+                                                @endif
                                             </div>
                                             <div class="mb-3">
                                                 <label for="emailaddress" class="form-label">Email address</label>
                                                 <input class="form-control" type="email" id="email" name="email"
-                                                    required="" placeholder="Enter your email">
+                                                    placeholder="Enter your email">
+                                                @if ($errors->has('email'))
+                                                    <span class="text-danger">{{ $errors->first('email') }}</span>
+                                                @endif
                                             </div>
                                             <div class="mb-3">
                                                 <label for="password" class="form-label">Password</label>
-                                                <input class="form-control" type="password" required=""
-                                                    id="password" name="password" placeholder="Enter your password">
+                                                <input class="form-control" type="password" id="password"
+                                                    name="password">
+                                                @if ($errors->has('password'))
+                                                    <span class="text-danger">{{ $errors->first('password') }}</span>
+                                                @endif
                                             </div>
                                             <div class="mb-3">
                                                 <div class="form-check">

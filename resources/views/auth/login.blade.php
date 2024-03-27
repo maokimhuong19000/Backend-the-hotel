@@ -20,36 +20,46 @@
                             <div class="col-lg-6">
                                 <div class="d-flex flex-column h-100">
                                     <div class="auth-brand p-4">
-                                       
-                                     
+
+
                                     </div>
                                     <div class="p-4 my-auto">
                                         <h4 class="fs-20">Sign In</h4>
                                         <p class="text-muted mb-3">Enter your email address and password to access
                                             account.
                                         </p>
-
+                                        @if (@session('error'))
+                                            <div class="alert alert-danger">
+                                                {{ session('error') }}
+                                                <span class="text-danger"></span>   
+                                            </div>
+                                        @endif
                                         <!-- form -->
-                                        <form method="POST" action="{{route('login')}}">
+                                        <form method="POST" action="{{ route('login') }}"
+                                            enctype="multipart/form-data">
                                             @csrf
-
-                                            @if (sizeof($errors) > 0)
+                                            {{-- @if (sizeof($errors) > 0)
                                                 @foreach ($errors->all() as $error)
                                                     <p class="text-danger">{{ $error }}</p>
                                                 @endforeach
-                                            @endif
-
+                                            @endif --}}
                                             <div class="mb-3">
                                                 <label for="emailaddress" class="form-label">Email address</label>
-                                                <input class="form-control" type="email" name="email" id="emailaddress"
-                                                    placeholdname('login');r="Enter your email" value="test@test.com">
+                                                <input class="form-control" type="email" name="email" id="email"
+                                                    placeholder="Enter your Email">
+                                                @if ($errors->has('email'))
+                                                    <span class="text-danger">{{ $errors->first('email') }}</span>
+                                                @endif
                                             </div>
                                             <div class="mb-3">
                                                 <a href="auth-forgotpw.html" class="text-muted float-end"><small>Forgot
-                                                        your
-                                                        password?</small></a>
+                                                        your password?</small></a>
                                                 <label for="password" class="form-label">Password</label>
-                                                <input class="form-control" type="password" name="password" id="password" placeholder="Enter your password" value="password">
+                                                <input class="form-control" type="password" name="password"
+                                                    id="password" placeholder="Enter your password" value="">
+                                                @if ($errors->has('password'))
+                                                    <span class="text-danger">{{ $errors->first('password') }}</span>
+                                                @endif
                                             </div>
                                             <div class="mb-3">
                                                 <div class="form-check">
@@ -60,7 +70,9 @@
                                                 </div>
                                             </div>
                                             <div class="mb-0 text-start">
-                                                <button class="btn btn-soft-primary w-100" type="submit"><i class="ri-login-circle-fill me-1"></i> <span class="fw-bold">Log In</span> </button>
+                                                <button class="btn btn-soft-primary w-100" type="submit"><i
+                                                        class="ri-login-circle-fill me-1"></i> <span class="fw-bold">Log
+                                                        In</span> </button>
                                             </div>
 
                                             <div class="text-center mt-4">
@@ -88,7 +100,8 @@
             </div>
             <div class="row">
                 <div class="col-12 text-center">
-                    <p class="text-dark-emphasis">Don't have an account? <a href=" "
+                    <p class="text-dark-emphasis">Don't have an account? <a
+                            href="{{ route('second', ['auth', 'register']) }}"
                             class="text-dark fw-bold ms-1 link-offset-3 text-decoration-underline"><b>Sign up</b></a>
                     </p>
                 </div> <!-- end col -->

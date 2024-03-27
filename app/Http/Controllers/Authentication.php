@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class Authentication extends Controller
 {
@@ -13,18 +14,26 @@ class Authentication extends Controller
      */
     public function doLogin(Request $request)
     {
-        try{
+        // try{
+            $request->validate([
+                'email'=> 'required | email',
+                'password'=> 'required'
+            ]);
+
             $data = $request->all();    
             $cre = [
                 'email' => $data['email'],  
                 'password' => $data['password'], 
             ];
             if(Auth::attempt($cre)){
-                return   redirect('/admin/home');
+                return  redirect('/admin/home')->with('sucsess_login','login sucesssfuly');
             }
-        }catch(Exception $e){
-            dd($e);
-        }
+            else{
+                return redirect()->back()->with('error','Invalid Credentials');
+            }
+        // }catch(Exception $e){
+        //    return $e;
+        // }
     }
 
     /**

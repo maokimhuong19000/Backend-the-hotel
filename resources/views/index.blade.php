@@ -1,7 +1,15 @@
 @extends('layouts.vertical', ['title' => 'Dashboard', 'mode' => $mode ?? '', 'demo' => $demo ?? ''])
 
 @section('content')
-@include('layouts.shared/page-title', ['sub_title' => 'Menu', 'page_title' => 'Dashboard'])
+    @include('layouts.shared/page-title', ['sub_title' => 'Menu', 'page_title' => 'Dashboard'])
+
+    
+    @if (@session('sucsess_login'))
+        <div class="alert alert-success">
+            {{ session('sucsess_login') }}
+            <span class="text-success"></span>
+        </div>
+    @endif
     <div class="row">
         <div class="col-xxl-3 col-sm-6">
             <div class="card widget-flat text-bg-pink">

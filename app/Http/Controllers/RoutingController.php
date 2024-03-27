@@ -36,19 +36,18 @@ class RoutingController extends Controller
      */
     public function root(Request $request, $first)
     {
-        dd(Auth::user()) ;
-            $mode = $request->query('mode');
-            $demo = $request->query('demo');
-            if ($first == "assets")
-                return redirect('home');
-            return view($first, ['mode' => $mode, 'demo' => $demo]);
+        $mode = $request->query('mode');
+        $demo = $request->query('demo');
+        if ($first == "assets")
+            return redirect('home');
+        return view($first, ['mode' => $mode, 'demo' => $demo]);
     }
     /**
      * second level route
      */
     public function secondLevel(Request $request, $first, $second)
     {
-      
+
         $mode = $request->query('mode');
         $demo = $request->query('demo');
         if ($first == "assets")
@@ -65,15 +64,17 @@ class RoutingController extends Controller
                 'tblrooms.room_img',
                 'tblroomtypes.room_type_name'
             )
-        ->join('tblroomtypes', 'tblrooms.room_type_id', '=', 'tblroomtypes.room_type_id')
-        ->where('room_active', '1')
-        ->orderBy('room_id', 'asc')
-        ->paginate(config('app.row'));
+            ->join('tblroomtypes', 'tblrooms.room_type_id', '=', 'tblroomtypes.room_type_id')
+            ->where('room_active', '1')
+            ->orderBy('room_id', 'asc')
+            ->paginate(config('app.row'));
         // ->get();
         $roomtype = DB::table('tblroomtypes')
-        ->select('room_type_id', 'room_type_name')
-        ->get();
-        return view($first . '.' . $second, ['mode' => $mode, 'demo' => $demo], compact('room', 'roomtype'));
+            ->select('room_type_id', 'room_type_name')
+            ->get();
+
+        $users=DB::table('users')->get();
+        return view($first . '.' . $second, ['mode' => $mode, 'demo' => $demo], compact('room', 'roomtype', 'users'));
     }
     /**
      * third level route
@@ -85,5 +86,5 @@ class RoutingController extends Controller
         if ($first == "assets")
             return redirect('home');
         return view($first . '.' . $second . '.' . $third, ['mode' => $mode, 'demo' => $demo]);
-    }   
+    }
 }
